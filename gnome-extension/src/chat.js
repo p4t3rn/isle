@@ -16,6 +16,7 @@ import {BotIcon} from './botIcon.js';
 import {VERTICAL, onUiScale, px} from './compat.js';
 import * as Format from './format.js';
 import {icon, iconButton, playMotion, slideBy, wrapLines} from './widgets.js';
+import {format, gettext as _} from './i18n.js';
 
 /** The little face beside its answers, in CSS pixels (see `px`). */
 const FACE_SIZE = 18;
@@ -25,15 +26,15 @@ const TIME_GAP_MS = 5 * 60000;
 const BUBBLE_MAX = 420;
 /** What a risk badge says, and its icon (see `risksOf` in isled). */
 const RISKS = {
-    removes: ['isle-trash', 'Removes files or apps'],
-    internet: ['isle-link', 'Runs a script from the web'],
-    root: ['isle-lock-symbolic', 'Needs your password'],
+    removes: ['isle-trash', _('Removes files or apps')],
+    internet: ['isle-link', _('Runs a script from the web')],
+    root: ['isle-lock-symbolic', _('Needs your password')],
 };
 const STATUS = {
-    done: ['isle-check-symbolic', 'Done', 'isle-card-done'],
-    failed: ['isle-close-symbolic', 'Failed', 'isle-card-failed'],
-    denied: ['isle-close-symbolic', 'Denied', 'isle-card-denied'],
-    stopped: ['isle-stop-symbolic', 'Stopped', 'isle-card-denied'],
+    done: ['isle-check-symbolic', _('Done'), 'isle-card-done'],
+    failed: ['isle-close-symbolic', _('Failed'), 'isle-card-failed'],
+    denied: ['isle-close-symbolic', _('Denied'), 'isle-card-denied'],
+    stopped: ['isle-stop-symbolic', _('Stopped'), 'isle-card-denied'],
 };
 
 // A label in one call.
@@ -97,7 +98,7 @@ function copyable(actor, copied, settled) {
 // A command as one press: a click copies all of it, as a terminal's copy button would.
 function copyButton(child, command, copied) {
     const button = new St.Button({child, style_class: 'isle-copy-button', x_expand: true, can_focus: true,
-        accessible_name: 'Copy the command'});
+        accessible_name: _('Copy the command')});
     button.connect('clicked', () => {
         copy(command());
         copied();
@@ -304,9 +305,9 @@ export const CommandCard = GObject.registerClass({
         this._foot = new St.BoxLayout({style_class: 'isle-card-foot'});
         this._risks = new St.BoxLayout({style_class: 'isle-card-risks', x_expand: true, y_align: Clutter.ActorAlign.CENTER});
         this._foot.add_child(this._risks);
-        this._stopButton = keyButton('Stop', null, 'isle-card-ghost', () => this._stop());
-        this._deny = keyButton('Deny', 'esc', 'isle-card-ghost', () => this.decide(false));
-        this._run = keyButton('Run', '↩', 'isle-card-run', () => this.decide(true));
+        this._stopButton = keyButton(_('Stop'), null, 'isle-card-ghost', () => this._stop());
+        this._deny = keyButton(_('Deny'), 'esc', 'isle-card-ghost', () => this.decide(false));
+        this._run = keyButton(_('Run'), '↩', 'isle-card-run', () => this.decide(true));
         for (const button of [this._stopButton, this._deny, this._run])
             this._foot.add_child(button);
         this.add_child(this._foot);
@@ -333,7 +334,7 @@ export const CommandCard = GObject.registerClass({
         const ended = !waiting && !running;
         this._title.text = card.why;
         // Waiting, the line under the title says what to know; running, how long it has been at it.
-        this._subtitle.text = waiting ? card.detail ?? '' : running ? `Running · ${elapsed(card.seconds ?? 0)}` : '';
+        this._subtitle.text = waiting ? card.detail ?? '' : running ? format("Running · %s", elapsed(card.seconds ?? 0)) : '';
         this._subtitle.visible = Boolean(this._subtitle.text);
         this._command.clutter_text.set_markup(shellMarkup(card.command));
         this._commandText = card.command;
@@ -345,7 +346,7 @@ export const CommandCard = GObject.registerClass({
         if (!running)
             this._disarmStop();
         if (running && this._stopArmed) {
-            this._risks.add_child(riskRow('removes', 'isle-warning-symbolic', 'May leave it half installed'));
+            this._risks.add_child(riskRow('removes', 'isle-warning-symbolic', _('May leave it half installed')));
         } else if (waiting) {
             // One is enough beside the buttons: the most telling (see RISKS), removing before the web before a password.
             const risk = Object.keys(RISKS).find(key => card.risks?.includes(key));
@@ -415,7 +416,7 @@ export const CommandCard = GObject.registerClass({
     _showStop(armed) {
         if (this._destroyed)
             return;
-        this._stopButton.label_actor.text = armed ? 'Stop anyway' : 'Stop';
+        this._stopButton.label_actor.text = armed ? _('Stop anyway') : _('Stop');
         this._risks.destroy_all_children();
         if (armed)
             this._risks.add_child(riskRow('removes', 'isle-warning-symbolic', 'May leave it half installed'));
@@ -430,7 +431,7 @@ export const CommandCard = GObject.registerClass({
             GLib.source_remove(this._copiedTimer);
         else
             this._beforeCopied = {label, shown, wasVisible};
-        label.text = 'Copied';
+        label.text = _('Copied');
         label.visible = true;
         label.add_style_class_name('isle-card-copied');
         if (label === this._statusText)
@@ -481,12 +482,12 @@ export const ChatView = GObject.registerClass({
     _init() {
         super._init({...VERTICAL, style_class: 'isle-chat', x_expand: true});
         const header = new St.BoxLayout({style_class: 'isle-chat-header'});
-        this._title = label('Chat', 'isle-chat-title', {x_expand: true, y_align: Clutter.ActorAlign.CENTER});
+        this._title = label(_('Chat'), 'isle-chat-title', {x_expand: true, y_align: Clutter.ActorAlign.CENTER});
         header.add_child(this._title);
         header.add_child(iconButton('isle-plus-symbolic', 'isle-button-flat isle-chat-new', () => this.emit('new-chat'),
-            {size: 13, accessibleName: 'New chat'}));
+            {size: 13, accessibleName: _('New chat')}));
         header.add_child(iconButton('isle-chevron-down-symbolic', 'isle-button-flat isle-chat-new', () => this.emit('close'),
-            {size: 13, accessibleName: 'Hide the conversation'}));
+            {size: 13, accessibleName: _('Hide the conversation')}));
         this.add_child(header);
         this._list = new St.BoxLayout({...VERTICAL, style_class: 'isle-chat-list', x_expand: true});
         this._scroll = new St.ScrollView({
@@ -556,7 +557,7 @@ export const ChatView = GObject.registerClass({
             }
             last = item;
         });
-        this._title.text = 'Conversation';
+        this._title.text = _('Conversation');
     }
 
     /** Messages shown. */

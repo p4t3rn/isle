@@ -12,5 +12,6 @@
   ],
   "settings-schema": "org.gnome.shell.extensions.isle",
   "url": "https://github.com/zickrian/isle",
-  "version-name": "1.7.3"
+  "version-name": "1.7.3",
+  "gettext-domain": "isle@zickrian.github.io"
 }

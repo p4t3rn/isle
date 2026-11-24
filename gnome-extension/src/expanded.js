@@ -15,6 +15,7 @@ import * as Format from './format.js';
 import * as Playback from './playback.js';
 import {watchClock} from './wallClock.js';
 import {Bars, PrivacyDots, RecordingDot, Ring, easeTo, fence, icon, iconButton, label, slideBy} from './widgets.js';
+import {gettext as _} from './i18n.js';
 
 /** Sizes and distances in CSS pixels (see `px`). */
 export const EXPANDED_WIDTH = 600;
@@ -31,16 +32,16 @@ export const BOTTOM_PADDING = 20;
 
 /** Each page's tab: its icon, and the label shown while it is open. */
 const TABS = {
-    call: {icon: 'isle-phone', label: 'Call'},
-    music: {icon: 'isle-music', label: 'Music'},
-    notifications: {icon: 'isle-bell', label: 'Notifications'},
-    focus: {icon: 'isle-timer', label: 'Timer'},
-    reminders: {icon: 'isle-tasks', label: 'Reminders'},
-    shelf: {icon: 'isle-shelf', label: 'Shelf'},
-    calendar: {icon: 'isle-calendar', label: 'Calendar'},
-    apps: {icon: 'isle-apps', label: 'Apps'},
-    devices: {icon: 'isle-headphones', label: 'Devices'},
-    usage: {icon: 'isle-gauge', label: 'Usage'},
+    call: {icon: 'isle-phone', label: _('Call')},
+    music: {icon: 'isle-music', label: _('Music')},
+    notifications: {icon: 'isle-bell', label: _('Notifications')},
+    focus: {icon: 'isle-timer', label: _('Timer')},
+    reminders: {icon: 'isle-tasks', label: _('Reminders')},
+    shelf: {icon: 'isle-shelf', label: _('Shelf')},
+    calendar: {icon: 'isle-calendar', label: _('Calendar')},
+    apps: {icon: 'isle-apps', label: _('Apps')},
+    devices: {icon: 'isle-headphones', label: _('Devices')},
+    usage: {icon: 'isle-gauge', label: _('Usage')},
 };
 /** How bright a tab's icon is: open, under the pointer, otherwise. */
 const TAB_OPACITY = {open: 255, hover: 200, idle: 140};
@@ -178,7 +179,7 @@ export const ExpandedView = GObject.registerClass({
         this._recordingButton = new St.Button({
             style_class: 'isle-recording-pill',
             child: recordingBox,
-            accessible_name: 'Stop recording',
+            accessible_name: _('Stop recording'),
             visible: false,
             y_align: Clutter.ActorAlign.CENTER,
         });
@@ -190,7 +191,7 @@ export const ExpandedView = GObject.registerClass({
         status.add_child(this._headerBars);
         // The assistant, as AI rather than a microphone: it listens, and it can be typed to.
         this._micButton = iconButton('isle-sparkle-symbolic', 'isle-button-flat isle-header-mic',
-            () => this.emit('voice-requested'), {size: 15, accessibleName: 'AI assistant'});
+            () => this.emit('voice-requested'), {size: 15, accessibleName: _('AI assistant')});
         status.add_child(this._micButton);
 
         const clock = new St.BoxLayout({y_align: Clutter.ActorAlign.CENTER, style_class: 'isle-header-clock'});
@@ -207,7 +208,7 @@ export const ExpandedView = GObject.registerClass({
         clock.add_child(time);
         status.add_child(clock);
         const settings = iconButton('isle-settings', 'isle-button-flat isle-header-settings',
-            () => this.emit('settings-requested'), {size: 15, accessibleName: 'Settings'});
+            () => this.emit('settings-requested'), {size: 15, accessibleName: _('Settings')});
         // Its icon is an image, which takes no CSS colour: dimmed as the sparkle beside it, lit under the pointer.
         settings.child.opacity = SETTINGS_OPACITY;
         settings.connect('notify::hover', () => settings.child.ease({opacity: settings.hover ? 255 : SETTINGS_OPACITY, duration: 120}));

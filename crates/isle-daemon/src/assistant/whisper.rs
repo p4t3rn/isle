@@ -61,22 +61,38 @@ pub fn installed() -> bool {
 }
 
 /// What `isled --doctor` says about speech recognition.
-pub fn report() -> String {
+pub fn report(locale: crate::locale::Locale) -> String {
     let models = downloaded(&models_dir());
     match native() {
+        Some(native) if !models.is_empty() && locale.is_chinese() => format!(
+            "  语音识别：{}（模型：{}），使用{}",
+            native.display(),
+            models.join("、"),
+            probe(&native, locale)
+        ),
         Some(native) if !models.is_empty() => format!(
             "  Speech recognition: {} (models: {}), on {}",
             native.display(),
             models.join(", "),
-            probe(&native)
+            probe(&native, locale)
         ),
-        Some(_) => "  Speech recognition: no speech model yet (run isle-setup-voice)".to_owned(),
-        None => "  Speech recognition: isle-whisper is missing (install Isle again)".to_owned(),
+        Some(_) => locale
+            .choose(
+                "  Speech recognition: no speech model yet (run isle-setup-voice)",
+                "  语音识别：尚未下载语音模型（请运行 isle-setup-voice）",
+            )
+            .to_owned(),
+        None => locale
+            .choose(
+                "  Speech recognition: isle-whisper is missing (install Isle again)",
+                "  语音识别：缺少 isle-whisper（请重新安装 Isle）",
+            )
+            .to_owned(),
     }
 }
 
 /// Where `isle-whisper` would run, as it finds when asked: the GPU's name, or the processor.
-fn probe(native: &Path) -> String {
+fn probe(native: &Path, locale: crate::locale::Locale) -> String {
     let child = std::process::Command::new(native)
         .arg("--probe")
         .stdin(Stdio::null())
@@ -84,7 +100,9 @@ fn probe(native: &Path) -> String {
         .stderr(Stdio::null())
         .spawn();
     let Ok(mut child) = child else {
-        return "nothing: it does not start".to_owned();
+        return locale
+            .choose("nothing: it does not start", "失败，无法启动")
+            .to_owned();
     };
     let started = Instant::now();
     // Polled: a GPU driver that hangs must not hang the check.
@@ -92,7 +110,12 @@ fn probe(native: &Path) -> String {
         if started.elapsed() > PROBE_TIMEOUT {
             child.kill().ok();
             child.wait().ok();
-            return "the processor (the GPU did not answer)".to_owned();
+            return locale
+                .choose(
+                    "the processor (the GPU did not answer)",
+                    "CPU（GPU 未响应）",
+                )
+                .to_owned();
         }
         std::thread::sleep(Duration::from_millis(50));
     }
@@ -100,24 +123,39 @@ fn probe(native: &Path) -> String {
     if let Some(mut stdout) = child.stdout.take() {
         std::io::Read::read_to_string(&mut stdout, &mut output).ok();
     }
-    device_name(&output)
+    device_name(&output, locale)
 }
 
 /// How the doctor names the device in the helper's `--probe` answer.
-fn device_name(probe: &str) -> String {
+fn device_name(probe: &str, locale: crate::locale::Locale) -> String {
     let probe: Value = serde_json::from_str(probe.trim()).unwrap_or_default();
     let integrated = probe["gpus"]
         .as_array()
         .is_some_and(|gpus| !gpus.is_empty());
     match (probe["device"].as_str(), probe["error"].as_str()) {
         // An integrated GPU is not faster than the processor's own cores.
-        (Some("cpu"), _) if integrated => {
-            "the processor (integrated graphics are not used)".to_owned()
-        }
-        (Some("cpu"), _) => "the processor (no graphics card found)".to_owned(),
+        (Some("cpu"), _) if integrated => locale
+            .choose(
+                "the processor (integrated graphics are not used)",
+                "CPU（未使用集成显卡）",
+            )
+            .to_owned(),
+        (Some("cpu"), _) => locale
+            .choose(
+                "the processor (no graphics card found)",
+                "CPU（未检测到显卡）",
+            )
+            .to_owned(),
+        (Some(gpu), _) if locale.is_chinese() => format!("GPU（{gpu}）"),
         (Some(gpu), _) => format!("the GPU ({gpu})"),
+        (None, Some(error)) if locale.is_chinese() => format!("失败：{error}"),
         (None, Some(error)) => format!("nothing: {error}"),
-        (None, None) => "the processor (the GPU check failed)".to_owned(),
+        (None, None) => locale
+            .choose(
+                "the processor (the GPU check failed)",
+                "CPU（GPU 检测失败）",
+            )
+            .to_owned(),
     }
 }
 
@@ -365,18 +403,30 @@ mod tests {
     #[test]
     fn names_where_it_runs() {
         assert_eq!(
-            device_name(r#"{"device":"Intel(R) UHD Graphics 630 (CFL GT2)","gpus":[]}"#),
+            device_name(
+                r#"{"device":"Intel(R) UHD Graphics 630 (CFL GT2)","gpus":[]}"#,
+                crate::locale::Locale::English
+            ),
             "the GPU (Intel(R) UHD Graphics 630 (CFL GT2))"
         );
         assert_eq!(
-            device_name("{\"device\":\"cpu\",\"gpus\":[]}\n"),
+            device_name(
+                "{\"device\":\"cpu\",\"gpus\":[]}\n",
+                crate::locale::Locale::English
+            ),
             "the processor (no graphics card found)"
         );
         assert_eq!(
-            device_name(r#"{"device":"cpu","gpus":["Intel(R) UHD Graphics 630 (CFL GT2)"]}"#),
+            device_name(
+                r#"{"device":"cpu","gpus":["Intel(R) UHD Graphics 630 (CFL GT2)"]}"#,
+                crate::locale::Locale::English
+            ),
             "the processor (integrated graphics are not used)"
         );
-        assert!(device_name(r#"{"error":"needs AVX2"}"#).contains("needs AVX2"));
-        assert!(device_name("").contains("processor"));
+        assert!(
+            device_name(r#"{"error":"needs AVX2"}"#, crate::locale::Locale::English)
+                .contains("needs AVX2")
+        );
+        assert!(device_name("", crate::locale::Locale::English).contains("processor"));
     }
 }

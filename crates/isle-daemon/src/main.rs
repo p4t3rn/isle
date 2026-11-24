@@ -13,6 +13,7 @@ mod clipboard;
 mod clock;
 mod eds;
 mod http;
+mod locale;
 mod login_env;
 mod media;
 mod meeting;
@@ -113,7 +114,7 @@ async fn run() -> anyhow::Result<()> {
             return Ok(());
         }
         Some("--doctor") => {
-            doctor().await;
+            doctor(locale::Locale::messages()).await;
             return Ok(());
         }
         Some("--report") => {
@@ -279,19 +280,28 @@ async fn is_running() -> bool {
 }
 
 /// `isled --doctor`: what works and what to do about what does not.
-async fn doctor() {
+async fn doctor(locale: locale::Locale) {
     println!("isled {}", env!("CARGO_PKG_VERSION"));
-    println!(
-        "Service: {}",
-        if is_running().await {
-            "running"
-        } else {
-            "not running (systemctl --user restart isled)"
-        }
-    );
+    let state = if is_running().await {
+        locale.choose("running", "正在运行")
+    } else {
+        locale.choose(
+            "not running (systemctl --user restart isled)",
+            "未运行（可执行 systemctl --user restart isled）",
+        )
+    };
+    println!("{} {state}", locale.choose("Service:", "服务："));
     assistant::prepare_report().await;
-    println!("Voice assistant:\n{}", assistant::report());
-    println!("AI alerts:\n{}", agents::report());
+    println!(
+        "{}\n{}",
+        locale.choose("Voice assistant:", "语音助手："),
+        assistant::report(locale)
+    );
+    println!(
+        "{}\n{}",
+        locale.choose("AI alerts:", "AI 提醒："),
+        agents::report(locale)
+    );
 }
 
 /// `isled --report`: what a bug report needs, to paste whole; it holds no clipboard, tasks or chats.
@@ -330,7 +340,7 @@ async fn report() {
         run("gnome-extensions", &["info", "isle@zickrian.github.io"])
     );
     println!("\n### Doctor\n\n```");
-    doctor().await;
+    doctor(locale::Locale::English).await;
     println!("```");
     println!(
         "\n### isled's log\n\n```\n{}\n```",

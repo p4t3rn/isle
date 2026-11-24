@@ -765,16 +765,21 @@ async fn watch_configs(
 }
 
 /// For `isled --doctor`: whether each AI's alerts are on.
-pub fn report() -> String {
+pub fn report(locale: crate::locale::Locale) -> String {
     let lines: Vec<String> = Ai::ALL
         .into_iter()
         .map(|ai| {
             let state = match (ai.found(), ai.hooked()) {
+                (_, true) if locale.is_chinese() => {
+                    format!("开启（{}）", ai.hooks_file().display())
+                }
                 (_, true) => format!("on ({})", ai.hooks_file().display()),
-                (true, false) => "off".to_owned(),
-                (false, false) => "off (not installed)".to_owned(),
+                (true, false) => locale.choose("off", "关闭").to_owned(),
+                (false, false) => locale
+                    .choose("off (not installed)", "关闭（未安装）")
+                    .to_owned(),
             };
-            format!("  {}: {state}", ai.name())
+            format!("  {}{}{state}", ai.name(), locale.choose(": ", "："))
         })
         .collect();
     lines.join("\n")

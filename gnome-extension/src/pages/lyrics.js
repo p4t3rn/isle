@@ -11,6 +11,7 @@ import St from 'gi://St';
 import {VERTICAL} from '../compat.js';
 import * as Playback from '../playback.js';
 import {icon, label, wrapFixedLines} from '../widgets.js';
+import {gettext as _} from '../i18n.js';
 
 /** Where the current line sits in the view, from the top. */
 const ANCHOR = 0.36;
@@ -31,12 +32,12 @@ const INTRO_MS = 3000;
 
 /** What the view says when there are no lines to show. */
 const STATES = {
-    loading: {dots: true, title: 'Looking for lyrics'},
-    not_found: {icon: 'isle-lyrics', title: 'No lyrics for this song', hint: 'Lyrics come from LRCLIB'},
-    instrumental: {icon: 'isle-music', title: 'Instrumental', hint: 'Nothing to sing along to'},
-    off: {icon: 'isle-lyrics', title: 'Lyrics are off', hint: 'Turn them on in Isle’s settings'},
-    error: {icon: 'isle-lyrics', title: 'Can’t reach the lyrics', hint: 'Check your connection · trying again soon'},
-    unavailable: {icon: 'isle-lyrics', title: 'Lyrics are busy right now', hint: 'Trying again in a moment'},
+    loading: {dots: true, title: _('Looking for lyrics')},
+    not_found: {icon: 'isle-lyrics', title: _('No lyrics for this song'), hint: _('Lyrics come from LRCLIB')},
+    instrumental: {icon: 'isle-music', title: _('Instrumental'), hint: _('Nothing to sing along to')},
+    off: {icon: 'isle-lyrics', title: _('Lyrics are off'), hint: _('Turn them on in Isle’s settings')},
+    error: {icon: 'isle-lyrics', title: _('Can’t reach the lyrics'), hint: _('Check your connection · trying again soon')},
+    unavailable: {icon: 'isle-lyrics', title: _('Lyrics are busy right now'), hint: _('Trying again in a moment')},
 };
 
 /** Three dots that breathe while the singing pauses. */

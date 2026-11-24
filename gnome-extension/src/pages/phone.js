@@ -11,6 +11,7 @@ import St from 'gi://St';
 
 import {VERTICAL, onUiScale, uiScale} from '../compat.js';
 import {icon, iconButton, label, pillButton, wrapLines} from '../widgets.js';
+import {format, gettext as _} from '../i18n.js';
 
 /** The tallest the code may be (CSS px): the page's height less its top padding. */
 const CODE_HEIGHT = 144;
@@ -29,12 +30,12 @@ const FOLD_MS = 220;
 
 /** What the island says of the network, by isled's `network`. */
 const NETWORK_NOTES = {
-    public: 'This network looks public · use your phone’s hotspot',
-    open: 'Open Wi-Fi: others nearby could see the files · try a hotspot',
-    unknown: 'Only share on a network you trust',
+    public: _('This network looks public · use your phone’s hotspot'),
+    open: _('Open Wi-Fi: others nearby could see the files · try a hotspot'),
+    unknown: _('Only share on a network you trust'),
 };
 /** How to connect, one short step a line; the first says where (a network to avoid makes it a warning). */
-const STEPS = ['Same Wi-Fi as this computer, or its hotspot', 'Scan the code with the camera', 'Allow it here with the code it shows'];
+const STEPS = [_('Same Wi-Fi as this computer, or its hotspot'), _('Scan the code with the camera'), _('Allow it here with the code it shows')];
 
 /** The QR code, black on white, each module whole device pixels so it is sharp at any scale. */
 export const PhoneCode = GObject.registerClass(
@@ -42,7 +43,7 @@ class PhoneCode extends St.DrawingArea {
     _init() {
         super._init({
             style_class: 'isle-phone-code',
-            accessible_name: 'Code to open the Shelf on your phone',
+            accessible_name: _('Code to open the Shelf on your phone'),
             y_align: Clutter.ActorAlign.START,
         });
         this._rows = [];
@@ -110,7 +111,7 @@ export const PhoneView = GObject.registerClass({
             y_expand: true,
             y_align: Clutter.ActorAlign.FILL,
         });
-        this._title = label('Scan with your phone', 'isle-phone-title', {y_align: Clutter.ActorAlign.START});
+        this._title = label(_('Scan with your phone'), 'isle-phone-title', {y_align: Clutter.ActorAlign.START});
         this.add_child(this._title);
 
         // Not connected yet: three numbered steps.
@@ -229,9 +230,9 @@ export const PhoneView = GObject.registerClass({
         this._noteText.text = note ?? '';
         this._fix = state?.firewall ?? null;
         this._copyRow.visible = !connected && Boolean(this._fix || this._url);
-        this._copyText.text = this._fix ? 'Phone can’t connect? ufw may block it' : 'Can’t scan? Send the link another way';
+        this._copyText.text = this._fix ? _('Phone can’t connect? ufw may block it') : _('Can’t scan? Send the link another way');
         if (!this._copiedTimer)
-            this._copy.label = this._fix ? 'Copy fix' : 'Copy link';
+            this._copy.label = this._fix ? _('Copy fix') : _('Copy link');
     }
 
     /** One row per item, in order, kept while its phone stays (refreshed in place); one whose phone went says
@@ -250,7 +251,7 @@ export const PhoneView = GObject.registerClass({
                 if (asks)
                     this._drop(key, row);
                 else
-                    this._leave(row, `${row._device} left`);
+                    this._leave(row, format("%s left", row._device));
             }
         }
         items.forEach((item, index) => {
@@ -279,15 +280,15 @@ export const PhoneView = GObject.registerClass({
     _askRow({id, code, device, address}) {
         const row = new St.BoxLayout({style_class: 'isle-phone-row isle-phone-ask'});
         const words = new St.BoxLayout({...VERTICAL, x_expand: true, y_align: Clutter.ActorAlign.CENTER});
-        words.add_child(label(`Code ${code}`, 'isle-phone-code-text'));
+        words.add_child(label(format("Code %s", code), 'isle-phone-code-text'));
         const what = label(`${device} · ${address}`, 'isle-phone-hint');
         wrapLines(what);
         words.add_child(what);
         row.add_child(words);
-        const deny = pillButton('Deny', 'isle-pill-small', () => this.emit('answer', id, false));
-        const allow = pillButton('Allow', 'isle-pill-small isle-pill-white isle-pill-decision', () => this.emit('answer', id, true));
-        deny.accessible_name = `Deny ${device} with code ${code}`;
-        allow.accessible_name = `Allow ${device} with code ${code}`;
+        const deny = pillButton(_('Deny'), 'isle-pill-small', () => this.emit('answer', id, false));
+        const allow = pillButton(_('Allow'), 'isle-pill-small isle-pill-white isle-pill-decision', () => this.emit('answer', id, true));
+        deny.accessible_name = format("Deny %s with code %s", device, code);
+        allow.accessible_name = format("Allow %s with code %s", device, code);
         row.add_child(deny);
         row.add_child(allow);
         return row;
@@ -305,8 +306,8 @@ export const PhoneView = GObject.registerClass({
         row._remove = iconButton('isle-close-symbolic', 'isle-phone-remove', () => {
             this._removing.add(id);
             this.emit('remove', id);
-            this._leave(row, `✓ ${row._device} disconnected`);
-        }, {size: 10, accessibleName: `Take ${device} off`});
+            this._leave(row, format("✓ %s disconnected", row._device));
+        }, {size: 10, accessibleName: format("Take %s off", device)});
         row.add_child(row._remove);
         this._refresh(row, phone);
         return row;
@@ -317,7 +318,7 @@ export const PhoneView = GObject.registerClass({
         if (row._leaving)
             return;
         row._device = device;
-        row._text.text = here ? `${device} · ${address}` : `${device} · ${address} · away`;
+        row._text.text = here ? `${device} · ${address}` : format("%s · %s · away", device, address);
         if (here) {
             row._dot.add_style_class_name('on');
             row.remove_style_class_name('isle-phone-away');
@@ -380,7 +381,7 @@ export const PhoneView = GObject.registerClass({
         if (!text)
             return;
         St.Clipboard.get_default().set_text(St.ClipboardType.CLIPBOARD, text);
-        this._copy.label = 'Copied';
+        this._copy.label = _('Copied');
         this._cancelCopied();
         this._copiedTimer = GLib.timeout_add(GLib.PRIORITY_DEFAULT, COPIED_MS, () => {
             this._copiedTimer = 0;

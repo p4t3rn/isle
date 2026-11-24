@@ -5,6 +5,7 @@
 
 import GLib from 'gi://GLib';
 import Gio from 'gi://Gio';
+import {format, gettext as _} from './i18n.js';
 
 let interfaceSettings = null;
 // Isle's own choice (Settings → Appearance → Clock): 'system', '24h' or '12h'.
@@ -54,12 +55,12 @@ export function shortcutLabel(accelerator) {
 
 /** "Tue 20 Oct", short and calm in the top bar. */
 export function longDate(dateTime = GLib.DateTime.new_now_local()) {
-    return dateTime.format('%a %-d %b');
+    return dateTime.format(_('%a %-d %b'));
 }
 
 /** "Tue 20", beside the closed island's clock (Settings). */
 export function shortDate(dateTime = GLib.DateTime.new_now_local()) {
-    return dateTime.format('%a %-d');
+    return dateTime.format(_('%a %-d'));
 }
 
 /** Formats a duration as "3:07" or "1:02:07". */
@@ -78,33 +79,33 @@ export function ago(dateTime) {
     const now = GLib.DateTime.new_now_local();
     const minutes = Math.floor(now.difference(dateTime) / 60e6);
     if (minutes < 1)
-        return 'now';
+        return _('now');
     if (minutes < 60)
-        return `${minutes}m`;
+        return format('%sm', minutes);
     if (minutes < 24 * 60)
-        return `${Math.floor(minutes / 60)}h`;
+        return format('%sh', Math.floor(minutes / 60));
     // Within the week its day; older, the date ("12 Oct").
-    return dateTime.format(minutes < 6 * 24 * 60 ? '%a' : '%-d %b');
+    return dateTime.format(minutes < 6 * 24 * 60 ? '%a' : _('%-d %b'));
 }
 
 /** A span of time as "1h 15m", "25m", "<1m" or "0m". */
 export function hoursMinutes(ms) {
     if (ms < 60000)
-        return ms > 0 ? '<1m' : '0m';
+        return ms > 0 ? _('<1m') : _('0m');
     const minutes = Math.round(ms / 60000);
     const hours = Math.floor(minutes / 60);
     if (!hours)
-        return `${minutes}m`;
-    return minutes % 60 ? `${hours}h ${minutes % 60}m` : `${hours}h`;
+        return format('%sm', minutes);
+    return minutes % 60 ? format("%sh %sm", hours, minutes % 60) : format('%sh', hours);
 }
 
 /** Human name for a pomodoro phase. */
 export function phaseName(phase) {
     return {
-        idle: 'Ready to focus',
-        focus: 'Focus',
-        short_break: 'Short break',
-        long_break: 'Long break',
+        idle: _('Ready to focus'),
+        focus: _('Focus'),
+        short_break: _('Short break'),
+        long_break: _('Long break'),
     }[phase] ?? phase;
 }
 

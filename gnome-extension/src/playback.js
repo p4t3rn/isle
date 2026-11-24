@@ -79,7 +79,7 @@ export function playerApp({desktop_entry: entry, identity}) {
     if (!playerApps.has(key)) {
         const ids = [];
         if (entry)
-            ids.push(`${entry}.desktop`);
+            ids.push(entry.endsWith('.desktop') ? entry : `${entry}.desktop`);
         if (identity)
             ids.push(...DesktopAppInfo.search(identity).flat());
         let app = null;
@@ -93,4 +93,12 @@ export function playerApp({desktop_entry: entry, identity}) {
         playerApps.set(key, app);
     }
     return playerApps.get(key);
+}
+
+/** A recovered launcher ID can use the application's localized display name. */
+export function playerName(player) {
+    if (player.identity && player.identity !== player.desktop_entry &&
+        `${player.identity}.desktop` !== player.desktop_entry)
+        return player.identity;
+    return playerApp(player)?.get_display_name() || player.identity;
 }

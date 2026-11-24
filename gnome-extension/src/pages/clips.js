@@ -17,6 +17,7 @@ import {VERTICAL, onUiScale, uiScale} from '../compat.js';
 import * as Format from '../format.js';
 import {icon, iconButton, label, scrollSideways, wrapLines} from '../widgets.js';
 import {SHELF_CAPACITY} from './files.js';
+import {format, gettext as _} from '../i18n.js';
 
 /** isled keeps 20 recent items and up to 10 pinned ones. */
 const MAX_CARDS = 30;
@@ -274,20 +275,20 @@ export const ClipsView = GObject.registerClass({
         const searching = this._query || this._kind;
         if (this._hidden) {
             this._emptyIcon.gicon = icon('isle-clipboard');
-            this._emptyTitle.text = 'Hidden while you share your screen';
-            this._emptyHint.text = 'Your clipboard shows again once sharing stops';
+            this._emptyTitle.text = _('Hidden while you share your screen');
+            this._emptyHint.text = _('Your clipboard shows again once sharing stops');
         } else if (searching) {
             this._emptyIcon.gicon = icon('isle-search');
-            this._emptyTitle.text = 'Nothing found';
-            this._emptyHint.text = 'Try other words or another filter';
+            this._emptyTitle.text = _('Nothing found');
+            this._emptyHint.text = _('Try other words or another filter');
         } else if (this._off) {
             this._emptyIcon.gicon = icon('isle-clipboard');
-            this._emptyTitle.text = 'Clipboard history is off';
-            this._emptyHint.text = 'Turn it on in Isle’s settings';
+            this._emptyTitle.text = _('Clipboard history is off');
+            this._emptyHint.text = _('Turn clipboard history on in Isle’s settings');
         } else {
             this._emptyIcon.gicon = icon('isle-clipboard');
-            this._emptyTitle.text = 'Nothing copied yet';
-            this._emptyHint.text = 'Text, links, images and files you copy show up here';
+            this._emptyTitle.text = _('Nothing copied yet');
+            this._emptyHint.text = _('Text, links, images and files you copy show up here');
         }
     }
 
@@ -491,7 +492,7 @@ export const ClipsView = GObject.registerClass({
             name.clutter_text.ellipsize = Pango.EllipsizeMode.MIDDLE;
             box.add_child(name);
             if (names.length > 1)
-                box.add_child(label(`+${names.length - 1} more`, 'isle-clip-subtle'));
+                box.add_child(label(format("+%s more", names.length - 1), 'isle-clip-subtle'));
             return box;
         }
         case 'link': {
@@ -562,45 +563,45 @@ export const ClipsView = GObject.registerClass({
 
         // Pinned items stay at the front and survive Clear all.
         actions.add_child(button(item.pinned ? 'isle-pin-fill' : 'isle-pin',
-            item.pinned ? 'Unpin' : 'Pin',
+            item.pinned ? _('Unpin') : _('Pin'),
             () => {
                 const pinned = (this._daemon.state.clipboard ?? []).filter(other => other.pinned).length;
                 if (!item.pinned && pinned >= MAX_PINNED) {
-                    this.flash(item, 'isle-pin', 'Pins full · unpin one');
+                    this.flash(item, 'isle-pin', _('Pins full · unpin one'));
                     return;
                 }
                 this._daemon.call('clipboard', 'SetPinned', item.id, !item.pinned);
                 if (!item.pinned)
-                    this.flash(item, 'isle-pin-fill', 'Pinned');
+                    this.flash(item, 'isle-pin-fill', _('Pinned'));
             }));
 
         if (item.kind === 'image' || item.kind === 'files') {
-            actions.add_child(button('isle-shelf', 'Add to the Files tab', () => {
+            actions.add_child(button('isle-shelf', _('Add to the Files tab'), () => {
                 const shelf = this._daemon.state.shelf ?? [];
                 const fresh = item.kind === 'image'
                     ? 1
                     : item.uris.filter(uri => !shelf.some(file => file.uri === uri)).length;
                 if (shelf.length + fresh > SHELF_CAPACITY) {
-                    this.flash(item, 'isle-shelf', 'Files is full');
+                    this.flash(item, 'isle-shelf', _('Files is full'));
                     return;
                 }
                 if (item.kind === 'image')
                     this._shelveImage(item);
                 else
                     this._daemon.call('shelf', 'Add', item.uris);
-                this.flash(item, 'isle-shelf', 'Added to Files');
+                this.flash(item, 'isle-shelf', _('Added to Files'));
             }));
         } else {
-            actions.add_child(button('isle-tasks', 'Add to Reminders', () => {
+            actions.add_child(button('isle-tasks', _('Add to Reminders'), () => {
                 const title = item.preview.split('\n').find(line => line.trim())?.trim().slice(0, 120);
                 if (!title)
                     return;
                 this._daemon.call('todo', 'Add', title);
-                this.flash(item, 'isle-tasks', 'Added to Reminders');
+                this.flash(item, 'isle-tasks', _('Added to Reminders'));
             }));
         }
 
-        actions.add_child(button('isle-close-symbolic', 'Remove', () => {
+        actions.add_child(button('isle-close-symbolic', _('Remove'), () => {
             // Removed at once; the card shrinks away until the list redraws.
             this._daemon.call('clipboard', 'Remove', item.id);
             card._removed = true;

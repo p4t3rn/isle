@@ -15,15 +15,30 @@ CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}"
 WORK="$(mktemp -d)"
 trap 'rm -rf "$WORK"' EXIT
 
-# A bold heading for each stage.
-step() { printf '\033[1m==> %s\033[0m\n' "$*"; }
+LOCALE="$PWD/gnome-extension/locale"
 
-[ "$(id -u)" -ne 0 ] || { echo "Run this as yourself, without sudo: Isle installs to your own home folder." >&2; exit 1; }
+message() {
+    if command -v gettext >/dev/null; then
+        TEXTDOMAINDIR="$LOCALE" gettext -d "$UUID" "$1"
+    else
+        printf '%s' "$1"
+    fi
+}
+render() {
+    local text
+    text="$(message "$1")"
+    shift
+    printf -- "$text" "$@"
+}
+step() { printf '\033[1m==> %s\033[0m\n' "$(render "$@")"; }
+say() { printf '%s\n' "$(render "$@")"; }
+
+[ "$(id -u)" -ne 0 ] || { say "Run this as yourself, without sudo: Isle installs to your own home folder." >&2; exit 1; }
 # One install at a time (an update clicked in Settings and one run in a terminal): the second stops.
 mkdir -p "$DATA/isle"
 if command -v flock >/dev/null; then
     exec 9>"$DATA/isle/install.lock"
-    flock -n 9 || { echo "Isle: another install of Isle is running; try again once it is done." >&2; exit 1; }
+    flock -n 9 || { say "Isle: another install of Isle is running; try again once it is done." >&2; exit 1; }
 fi
 # Put in place whole or not at all: copied beside it, then renamed over it (a full disk leaves the old one).
 put() {
@@ -64,11 +79,11 @@ else
         if cargo build --release -p isle-shelf; then
             SHELF=1
         else
-            echo "isle-shelf did not build (it needs Rust 1.92 or newer: 'rustup update'); skipping drag and drop on the shelf."
+            say "isle-shelf did not build (it needs Rust 1.92 or newer: 'rustup update'); skipping drag and drop on the shelf."
         fi
     else
-        echo "GTK 4 development files not found: skipping isle-shelf (drag and drop on the shelf)."
-        echo "Install them with 'sudo apt install libgtk-4-dev' and run this script again."
+        say "GTK 4 development files not found: skipping isle-shelf (drag and drop on the shelf)."
+        say "Install them with 'sudo apt install libgtk-4-dev' and run this script again."
     fi
     # The voice assistant's speech recognition: whisper.cpp, built with cmake; Vulkan for the GPU.
     if command -v cmake >/dev/null && command -v c++ >/dev/null; then
@@ -76,22 +91,22 @@ else
         if command -v glslc >/dev/null && pkg-config --exists vulkan; then
             FEATURES=()
         else
-            echo "Vulkan headers or glslc not found: speech recognition will use the processor only."
-            echo "For the GPU: 'sudo apt install libvulkan-dev glslc', then run this script again."
+            say "Vulkan headers or glslc not found: speech recognition will use the processor only."
+            say "For the GPU: 'sudo apt install libvulkan-dev glslc', then run this script again."
             FEATURES=(--no-default-features)
         fi
         if cargo build --release -p isle-whisper "${FEATURES[@]}"; then
             WHISPER=1
         else
-            echo "isle-whisper did not build (it needs libclang too: 'sudo apt install libclang-dev'); the voice assistant needs it."
+            say "isle-whisper did not build (it needs libclang too: 'sudo apt install libclang-dev'); the voice assistant needs it."
         fi
     else
-        echo "cmake or a C++ compiler not found: skipping isle-whisper (the voice assistant's speech recognition)."
-        echo "Install them with 'sudo apt install cmake g++ libclang-dev' and run this script again."
+        say "cmake or a C++ compiler not found: skipping isle-whisper (the voice assistant's speech recognition)."
+        say "Install them with 'sudo apt install cmake g++ libclang-dev' and run this script again."
     fi
 fi
 
-step "Installing binaries to $BINDIR"
+step "Installing binaries to %s" "$BINDIR"
 put "$BUILT/isled" "$BINDIR/isled"
 if [ "$SHELF" = 1 ]; then
     put "$BUILT/isle-shelf" "$BINDIR/isle-shelf"
@@ -133,7 +148,7 @@ if [ -d "$DATA/gnome-shell/extensions/$OLD_UUID" ]; then
     current=$(gsettings get org.gnome.shell enabled-extensions)
     updated=$(printf '%s' "$current" | sed -e "s/, '$OLD_UUID'//" -e "s/'$OLD_UUID', //" -e "s/\['$OLD_UUID'\]/@as []/")
     [ "$updated" != "$current" ] && gsettings set org.gnome.shell enabled-extensions "$updated"
-    echo "Replaced the install under the old id $OLD_UUID."
+    say "Replaced the install under the old id %s." "$OLD_UUID"
 fi
 DEST="$DATA/gnome-shell/extensions/$UUID"
 # Made aside (not among the extensions, where GNOME would read it), then swapped in: a copy that fails
@@ -154,10 +169,10 @@ busctl --user call org.freedesktop.DBus /org/freedesktop/DBus org.freedesktop.DB
 # own when the extension first calls it.
 if systemctl --user daemon-reload 2>/dev/null; then
     systemctl --user enable isled.service >/dev/null 2>&1 ||
-        echo "isled could not be set to start with your session ('systemctl --user enable isled' says why); it still starts once the island calls it."
+        say "isled could not be set to start with your session ('systemctl --user enable isled' says why); it still starts once the island calls it."
     # A failure here is reported, not fatal: the extension still goes in, and isled starts once called.
     systemctl --user restart isled.service ||
-        echo "isled did not start; see 'journalctl --user -u isled' (the island still works without it, minus its services)."
+        say "isled did not start; see 'journalctl --user -u isled' (the island still works without it, minus its services)."
 else
     # An isled started by D-Bus would go on running the old version from its replaced file: stopped, it
     # starts anew as the island calls it again (within seconds; see the extension's service check).
@@ -169,7 +184,7 @@ fi
 if [ "$WHISPER" = 1 ] && { [ -d "$DATA/isle/voice-venv" ] || [ -f "$DATA/isle/isle-whisper.py" ]; }; then
     step "Moving the voice assistant to the new speech recognition"
     "$BINDIR/isle-setup-voice" --remove-old </dev/null ||
-        echo "That did not finish; run isle-setup-voice later (the voice assistant needs it)."
+        say "That did not finish; run isle-setup-voice later (the voice assistant needs it)."
 fi
 
 # A running GNOME Shell on Wayland does not know a new extension until the
@@ -190,7 +205,7 @@ fi
 # GNOME runs no user extensions at all while this is on (Extensions → "Use Extensions" off).
 if [ "$(gsettings get org.gnome.shell disable-user-extensions 2>/dev/null)" = "true" ]; then
     gsettings set org.gnome.shell disable-user-extensions false
-    echo "Turned extensions on (they were all switched off in the Extensions app)."
+    say "Turned extensions on (they were all switched off in the Extensions app)."
 fi
 
 if [ "$FIRST" = 1 ]; then
@@ -224,14 +239,12 @@ if extension_on "$BLUR"; then
     done
     # Blur my Shell's top bar blur also darkens it, and the glass bar has no colour of its own.
     if [ "$(gsettings "${schema[@]}" get org.gnome.shell.extensions.blur-my-shell.panel blur 2>/dev/null)" = true ]; then
-        RECOMMEND+=("Blur my Shell darkens the top bar behind the island. To blur only the rest, turn off
-    Blur my Shell → Panel → Blur, or run: $blur_command set org.gnome.shell.extensions.blur-my-shell.panel blur false")
+        RECOMMEND+=("$(render "Blur my Shell darkens the top bar. To blur only the rest, turn off Blur my Shell → Panel → Blur or run: %s" "$blur_command set org.gnome.shell.extensions.blur-my-shell.panel blur false")")
     fi
 fi
 for uuid in dynamic-island@bjagetic hidetopbar@mathieu.bidon.ca; do
     if extension_on "$uuid"; then
-        RECOMMEND+=("$uuid takes the same place in the top bar and covers the island. Turn it off in
-    the Extensions app, or run: gnome-extensions disable $uuid")
+        RECOMMEND+=("$(render "%s covers the island. Turn it off in the Extensions app or run: gnome-extensions disable %s" "$uuid" "$uuid")")
     fi
 done
 if [ "${#RECOMMEND[@]}" -gt 0 ]; then
@@ -239,23 +252,23 @@ if [ "${#RECOMMEND[@]}" -gt 0 ]; then
     printf -- '- %s\n' "${RECOMMEND[@]}"
 fi
 if [ -d "/usr/share/gnome-shell/extensions/$UUID" ]; then
-    echo "Isle is also installed system-wide (a .deb, .rpm or AUR package): this install in your home folder takes precedence for you."
+    say "Isle is also installed system-wide (a .deb, .rpm or AUR package): this install in your home folder takes precedence for you."
 fi
 
 if [ "$FIRST" = 1 ]; then
-    step "Isle $VERSION is installed"
+    step "Isle %s is installed" "$VERSION"
 else
-    step "Isle is updated to $VERSION"
+    step "Isle is updated to %s" "$VERSION"
 fi
 SHELL_VERSION="$(gnome-shell --version 2>/dev/null | grep -oE '[0-9]+' | head -n1 || true)"
 # Only an X11 session of GNOME 48 or older restarts the shell in place; Wayland needs a new login.
 if [ "${XDG_SESSION_TYPE:-}" = "x11" ] && [ -n "$SHELL_VERSION" ] && [ "$SHELL_VERSION" -le 48 ]; then
-    echo "Press Alt+F2, type 'r' and Enter to restart GNOME Shell."
+    say "Press Alt+F2, type 'r' and Enter to restart GNOME Shell."
 else
-    echo "Log out and back in once so GNOME Shell loads the new extension."
+    say "Log out and back in once so GNOME Shell loads the new extension."
 fi
 # Some systems put ~/.local/bin on the PATH only once it exists, at the next login; others never.
 case ":$PATH:" in
     *":$BINDIR:"*) ;;
-    *) echo "Note: $BINDIR is not on your PATH, so run Isle's commands with it: $BINDIR/isled --doctor, $BINDIR/isle-setup-voice." ;;
+    *) say "Note: %s is not on your PATH, so run Isle's commands with it: %s/isled --doctor, %s/isle-setup-voice." "$BINDIR" "$BINDIR" "$BINDIR" ;;
 esac

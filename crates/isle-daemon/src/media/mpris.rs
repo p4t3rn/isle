@@ -20,6 +20,7 @@ use zbus::{Connection, MatchRule, MessageStream, proxy};
 
 use super::gap::GapBridge;
 use super::lyrics::{self, Lyrics, LyricsStatus, TrackQuery};
+use super::source;
 use super::{MediaService, NowPlaying, PlayerChoice, Wish, Wishes, art};
 use crate::clock::now_ms;
 
@@ -167,6 +168,8 @@ struct Entry {
     desktop_entry: String,
     /// A web browser, whose reads are stale at times (see [`reconcile`]).
     browser: bool,
+    /// Ordinary browser media can leave the island after being paused.
+    rest_when_paused: bool,
     snapshot: Snapshot,
     /// Order in which players last started playing; the latest one wins.
     started_playing: u64,
@@ -273,7 +276,7 @@ pub async fn watch(
 
     for name in dbus.list_names().await? {
         if is_player(name.as_str()) {
-            watcher.add(name).await;
+            watcher.add(&dbus, name).await;
         }
     }
     watcher.publish().await;
@@ -298,7 +301,7 @@ pub async fn watch(
                 let Ok(name) = OwnedBusName::try_from(name) else { continue };
                 watcher.players.remove(&name);
                 if !new.is_empty() {
-                    watcher.add(name).await;
+                    watcher.add(&dbus, name).await;
                 }
             }
             Some(wish) = wished.recv() => watcher.wish(wish),
@@ -409,8 +412,8 @@ async fn left_bus(conn: Connection, name: OwnedUniqueName, events: mpsc::Unbound
 
 impl Watcher {
     /// Starts watching a player that appeared, and reads it once.
-    async fn add(&mut self, name: OwnedBusName) {
-        match self.connect(name.clone()).await {
+    async fn add(&mut self, dbus: &DBusProxy<'_>, name: OwnedBusName) {
+        match self.connect(dbus, name.clone()).await {
             Ok(entry) => {
                 debug!("found media player {name}");
                 self.players.insert(name.clone(), entry);
@@ -421,7 +424,7 @@ impl Watcher {
     }
 
     /// Reads the player's name and app, and listens for its changes in bursts.
-    async fn connect(&self, name: OwnedBusName) -> zbus::Result<Entry> {
+    async fn connect(&self, dbus: &DBusProxy<'_>, name: OwnedBusName) -> zbus::Result<Entry> {
         let player = PlayerProxy::builder(&self.conn)
             .destination(name.clone())?
             .cache_properties(CacheProperties::No)
@@ -446,7 +449,7 @@ impl Watcher {
             .get("DesktopEntry")
             .and_then(|v| string(v))
             .unwrap_or_default();
-        let browser = is_browser(&[name.as_str(), &identity, &desktop_entry]);
+        let source = source::identify(dbus, &name, identity, desktop_entry).await;
 
         // Only the player's own properties: Identity and the like are read once, above. A change to none that
         // isled reads (a volume slider dragged in the player) reads nothing again.
@@ -508,9 +511,10 @@ impl Watcher {
         Ok(Entry {
             player,
             properties,
-            identity,
-            desktop_entry,
-            browser,
+            identity: source.identity,
+            desktop_entry: source.desktop_entry,
+            browser: source.browser,
+            rest_when_paused: source.rest_when_paused,
             snapshot: Snapshot::default(),
             started_playing: 0,
             listener,
@@ -658,7 +662,7 @@ impl Watcher {
             entry.dismissed = false;
         } else if entry.paused_at.is_none() {
             entry.paused_at = Some(Instant::now());
-            if entry.browser {
+            if entry.rest_when_paused {
                 let events = self.events.clone();
                 tokio::spawn(async move {
                     tokio::time::sleep(REST_AFTER).await;
@@ -709,7 +713,7 @@ impl Watcher {
             .iter()
             .filter(|(_, entry)| !entry.dismissed)
             .map(|(name, entry)| {
-                let resting = rests(entry.browser, &entry.snapshot, entry.paused_at);
+                let resting = rests(entry.rest_when_paused, &entry.snapshot, entry.paused_at);
                 (name, &entry.snapshot, entry.started_playing, resting)
             });
         pick(players, self.chosen.as_ref())
@@ -794,7 +798,7 @@ impl Watcher {
                     can_go_previous: s.can_go_previous,
                     can_play_pause: s.can_play_pause,
                     can_seek: s.can_seek,
-                    resting: rests(entry.browser, s, entry.paused_at),
+                    resting: rests(entry.rest_when_paused, s, entry.paused_at),
                 };
                 let art_url = s.art_url.clone();
                 let active = (entry.player.clone(), s.track_id.clone());
@@ -1155,31 +1159,6 @@ fn integer(value: &Value<'_>) -> Option<i64> {
 
 /// A reported position this far behind the one already tracked may be a stale read rather than a seek.
 const STALE_BEHIND_US: f64 = 1_500_000.0;
-
-/// Browsers, whose media reads are stale at times; other players' reads are taken as they come.
-const BROWSERS: &[&str] = &[
-    "firefox",
-    "zen",
-    "chrom",
-    "brave",
-    "edge",
-    "vivaldi",
-    "opera",
-    "epiphany",
-    "librewolf",
-    "floorp",
-    "waterfox",
-    "mullvad",
-    "icecat",
-];
-
-/// Whether a player is a web browser, by its bus name, identity or desktop entry.
-fn is_browser(names: &[&str]) -> bool {
-    names.iter().any(|name| {
-        let name = name.to_lowercase();
-        BROWSERS.iter().any(|browser| name.contains(browser))
-    })
-}
 
 /// The same media: the track id when both have one, and the title and artist. Firefox gives every
 /// video one track id, and Chromium "NoTrack" when a page sets none: the title tells them apart.
@@ -1779,35 +1758,6 @@ mod tests {
         };
         let got = fold(&previous, next, None, true);
         assert_eq!((got.position_us, got.length_us), (0, 0));
-    }
-
-    #[test]
-    fn browsers_are_told_apart() {
-        assert!(super::is_browser(&[
-            "org.mpris.MediaPlayer2.firefox.instance_1_7",
-            "Mozilla Firefox",
-            "firefox"
-        ]));
-        assert!(super::is_browser(&[
-            "org.mpris.MediaPlayer2.zen",
-            "Zen",
-            "zen"
-        ]));
-        assert!(super::is_browser(&[
-            "org.mpris.MediaPlayer2.chromium.instance42",
-            "Chrome",
-            "google-chrome"
-        ]));
-        assert!(!super::is_browser(&[
-            "org.mpris.MediaPlayer2.spotify",
-            "Spotify",
-            "spotify"
-        ]));
-        assert!(!super::is_browser(&[
-            "org.mpris.MediaPlayer2.vlc",
-            "VLC media player",
-            "vlc"
-        ]));
     }
 
     #[test]

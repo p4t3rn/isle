@@ -15,6 +15,7 @@ import * as Format from '../format.js';
 import * as Palette from '../palette.js';
 import {icon, label, slideBy} from '../widgets.js';
 import {Page} from './page.js';
+import {format, gettext as _} from '../i18n.js';
 
 /** A limit warns (an alert) and then turns red at these shares; Settings may move them (see `setMarks`). */
 const MARKS = {warn: 80, critical: 95};
@@ -308,7 +309,7 @@ class UsagePage extends Page {
         for (const window of provider.windows.slice(0, 3))
             limits.add_child(this._limit(window, accent));
         if (provider.windows.length === 0)
-            limits.add_child(label(provider.empty || 'No limits reported yet', 'isle-usage-empty'));
+            limits.add_child(label(provider.empty || _('No limits reported yet'), 'isle-usage-empty'));
         content.add_child(limits);
         return content;
     }
@@ -343,14 +344,14 @@ class UsagePage extends Page {
 function resets(ms) {
     const minutes = Math.max(0, Math.round((ms - Date.now()) / 60000));
     if (minutes < 1)
-        return 'resets soon';
+        return _('resets soon');
     const days = Math.floor(minutes / 1440);
     const hours = Math.floor((minutes % 1440) / 60);
     if (days > 0)
-        return hours ? `resets in ${days}d ${hours}h` : `resets in ${days}d`;
+        return hours ? format("resets in %sd %sh", days, hours) : format("resets in %sd", days);
     if (hours > 0)
-        return minutes % 60 ? `resets in ${hours}h ${minutes % 60}m` : `resets in ${hours}h`;
-    return `resets in ${minutes}m`;
+        return minutes % 60 ? format("resets in %sh %sm", hours, minutes % 60) : format("resets in %sh", hours);
+    return format("resets in %sm", minutes);
 }
 
 /** "Updated 14:32", or "From Codex, 14:32" for numbers as of Codex's last use; on another day, with its name. */
@@ -360,5 +361,5 @@ function updated(ms, fromCodex) {
     const at = GLib.DateTime.new_from_unix_local(Math.floor(ms / 1000));
     const today = GLib.DateTime.new_now_local().format('%F') === at.format('%F');
     const when = today ? Format.timeOfDay(at) : `${at.format('%a')} ${Format.timeOfDay(at)}`;
-    return fromCodex ? `From Codex, ${when}` : `Updated ${when}`;
+    return fromCodex ? format("From Codex, %s", when) : format("Updated %s", when);
 }

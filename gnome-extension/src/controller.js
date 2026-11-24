@@ -53,6 +53,7 @@ import * as Theme from './theme.js';
 import {GREETING, InstalledApps, UNDO_MS, VoiceView, stopUnit, actionTypes, aiSettings, openSetUp, openSignIn, runActions, signInHint, stopPending, voiceContext} from './voice.js';
 import {autoHide, revealBand} from './visibilityRules.js';
 import {TextWriter} from './writer.js';
+import {format, gettext as _} from './i18n.js';
 
 /** While the pointer rests before the island opens (Settings: hover-delay), it moves at most this far (CSS px). */
 const REST_DISTANCE_PX = 10;
@@ -2709,7 +2710,7 @@ export class Controller {
             this._syncAssistantBusy();
             return;
         }
-        const why = error || (this._daemon.running ? 'Isle couldn’t take that' : 'Isle’s service isn’t running');
+        const why = error || (this._daemon.running ? _('Isle couldn’t take that') : _('Isle’s service isn’t running'));
         this._listenSent = false;
         this._voice.setState({phase: 'error', error: why, hint: this._askAgainHint});
         this._setKeyboard(false);
@@ -2765,7 +2766,7 @@ export class Controller {
 
     /** How to ask again, under an error: the shortcut, if there is one. */
     get _askAgainHint() {
-        return this._voiceShortcut ? `Press ${this._voiceShortcut} to ask again.` : 'Ask again from the mic in the island.';
+        return this._voiceShortcut ? format("Press %s to ask again.", this._voiceShortcut) : _('Ask again from the mic in the island.');
     }
 
     /** Whether the assistant works on a request with the island closed. */
@@ -2836,7 +2837,7 @@ export class Controller {
                 this._voiceTurn = state.turn ?? 0;
                 this._voiceStep = state.step ?? 0;
                 if (state.phase === 'acting') {
-                    const detail = 'Isle was restarted (the screen locked) while this ran; it may not have happened';
+                    const detail = _('Isle was restarted (the screen locked) while this ran; it may not have happened');
                     this._daemon.call('assistant', 'Results', state.step,
                         JSON.stringify((state.actions ?? []).map(action => ({type: action.type, ok: false, detail}))));
                 }
@@ -3108,7 +3109,7 @@ export class Controller {
         if (this._voiceInBackground) {
             this._voiceInBackground = false;
             this._syncAssistantBusy();
-            this._post(Alerts.assistant({phase: 'error', error: 'Isle restarted', hint: this._askAgainHint},
+            this._post(Alerts.assistant({phase: 'error', error: _('Isle restarted'), hint: this._askAgainHint},
                 () => this._openVoice()));
             return;
         }

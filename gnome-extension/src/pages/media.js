@@ -17,6 +17,7 @@ import * as Playback from '../playback.js';
 import {Art, Bars, Slider, fence, icon, iconButton, label, ownIcon, restsAt, setButtonIcon, setEnabled, smallCover, coverKey} from '../widgets.js';
 import {LyricsPane} from './lyrics.js';
 import {Page} from './page.js';
+import {format, gettext as _} from '../i18n.js';
 
 /** The cover beside the player: as tall as its column. Sizes in CSS pixels (see `px`). */
 const ART_SIZE = 104;
@@ -220,11 +221,11 @@ export const MediaPage = GObject.registerClass({
     _transport() {
         const row = new St.BoxLayout({style_class: 'isle-transport', y_align: Clutter.ActorAlign.CENTER});
         const play = iconButton('isle-play-symbolic', 'isle-button-flat isle-play',
-            () => this.daemon.call('media', 'PlayPause'), {size: 22, accessibleName: 'Play or pause'});
+            () => this.daemon.call('media', 'PlayPause'), {size: 22, accessibleName: _('Play or pause')});
         const previous = iconButton('isle-backward-symbolic', 'isle-button-flat',
-            () => this.daemon.call('media', 'Previous'), {size: 18, accessibleName: 'Previous'});
+            () => this.daemon.call('media', 'Previous'), {size: 18, accessibleName: _('Previous')});
         const next = iconButton('isle-forward-symbolic', 'isle-button-flat',
-            () => this.daemon.call('media', 'Next'), {size: 18, accessibleName: 'Next'});
+            () => this.daemon.call('media', 'Next'), {size: 18, accessibleName: _('Next')});
         for (const button of [previous, play, next])
             row.add_child(button);
         this._playButtons.push(play);
@@ -263,11 +264,11 @@ export const MediaPage = GObject.registerClass({
                 this.daemon.call('media', 'Choose', this._nextPlayer.name);
         });
         modes.add_child(this._playerSwitch);
-        modes.add_child(this._modeButton('lyrics', 'isle-lyrics', 'Show lyrics', false));
-        modes.add_child(this._modeButton('audio', 'isle-output', 'Volume and output', false));
+        modes.add_child(this._modeButton('lyrics', 'isle-lyrics', _('Show lyrics'), false));
+        modes.add_child(this._modeButton('audio', 'isle-output', _('Volume and output'), false));
         // While paused: put this player away until it plays again (a tab's video that is over).
         this._dismiss = iconButton('isle-close-symbolic', 'isle-button-flat isle-player-dismiss',
-            () => this.daemon.call('media', 'Dismiss'), {size: 14, accessibleName: 'Hide until it plays again'});
+            () => this.daemon.call('media', 'Dismiss'), {size: 14, accessibleName: _('Hide until it plays again')});
         this._dismiss.visible = false;
         modes.add_child(this._dismiss);
         // The last icon on the page's right edge, as the header's settings; its padding hangs past it.
@@ -298,7 +299,7 @@ export const MediaPage = GObject.registerClass({
         // before it). Off until pressed: the open island covers the top of the windows below it, so it never stays
         // by itself.
         this._pin = iconButton('isle-pin', 'isle-button-flat isle-mode-toggle isle-lyrics-pin', () => (this.pinned = !this._pinned),
-            {size: 13, accessibleName: 'Keep the lyrics open'});
+            {size: 13, accessibleName: _('Keep the lyrics open')});
         this._pin.set({x_expand: false, y_align: Clutter.ActorAlign.CENTER});
         const title = this._titles[this._titles.length - 1];
         texts.remove_child(title);
@@ -312,11 +313,11 @@ export const MediaPage = GObject.registerClass({
         side.add_child(this._progress());
 
         const controls = new St.BoxLayout({style_class: 'isle-lyrics-controls'});
-        controls.add_child(this._modeButton('lyrics', 'isle-lyrics', 'Hide lyrics', true));
+        controls.add_child(this._modeButton('lyrics', 'isle-lyrics', _('Hide lyrics'), true));
         const transport = this._transport();
         transport.set({x_expand: true, x_align: Clutter.ActorAlign.CENTER});
         controls.add_child(transport);
-        controls.add_child(this._modeButton('audio', 'isle-output', 'Volume and output', false));
+        controls.add_child(this._modeButton('audio', 'isle-output', _('Volume and output'), false));
         side.add_child(controls);
 
         this._lyricsPane = new LyricsPane(this);
@@ -333,7 +334,7 @@ export const MediaPage = GObject.registerClass({
 
         const volume = new St.BoxLayout({style_class: 'isle-volume-row'});
         this._muteButton = iconButton('audio-volume-high-symbolic', 'isle-button-flat',
-            () => this._audio.toggleMuted(), {size: 18, accessibleName: 'Mute'});
+            () => this._audio.toggleMuted(), {size: 18, accessibleName: _('Mute')});
         this._volumeSlider = new Slider({scrollStep: 0.05});
         this._volumeSlider.connect('value-changed', (_slider, value) => {
             // Over 100% (boosted in Settings) the slider stays full: its end leaves the boost be.
@@ -345,7 +346,7 @@ export const MediaPage = GObject.registerClass({
         volume.add_child(this._muteButton);
         volume.add_child(this._volumeSlider);
         volume.add_child(this._volumeText);
-        volume.add_child(this._modeButton('audio', 'isle-output', 'Back to the player', true));
+        volume.add_child(this._modeButton('audio', 'isle-output', _('Back to the player'), true));
         layout.add_child(volume);
 
         this._outputList = new St.BoxLayout({...VERTICAL, style_class: 'isle-output-list'});
@@ -370,8 +371,8 @@ export const MediaPage = GObject.registerClass({
             y_align: Clutter.ActorAlign.CENTER,
         });
         box.add_child(new St.Icon({gicon: icon('isle-music'), icon_size: 28, style_class: 'isle-empty-icon'}));
-        box.add_child(label('Nothing playing', 'isle-empty-title', {x_align: Clutter.ActorAlign.CENTER}));
-        box.add_child(label('Play something in Spotify or on YouTube', 'isle-empty-hint', {x_align: Clutter.ActorAlign.CENTER}));
+        box.add_child(label(_('Nothing playing'), 'isle-empty-title', {x_align: Clutter.ActorAlign.CENTER}));
+        box.add_child(label(_('Start playback in a music player or browser'), 'isle-empty-hint', {x_align: Clutter.ActorAlign.CENTER}));
         return box;
     }
 
@@ -395,7 +396,7 @@ export const MediaPage = GObject.registerClass({
             this._pin.add_style_class_name('on');
         else
             this._pin.remove_style_class_name('on');
-        this._pin.accessible_name = pinned ? 'Let the lyrics close' : 'Keep the lyrics open';
+        this._pin.accessible_name = pinned ? _('Let the lyrics close') : _('Keep the lyrics open');
         this._syncHold();
     }
 
@@ -488,7 +489,8 @@ export const MediaPage = GObject.registerClass({
         if (!this._syncMode())
             return;
         // A new song changes the layouts not shown too: they are laid out ahead (see `Page.markCold`).
-        const track = [nowPlaying.title, nowPlaying.artist, nowPlaying.album, nowPlaying.identity, nowPlaying.art_path].join('\u001f');
+        const playerName = Playback.playerName(nowPlaying);
+        const track = [nowPlaying.title, nowPlaying.artist, nowPlaying.album, playerName, nowPlaying.art_path].join('\u001f');
         if (track !== this._track) {
             this._track = track;
             this.markCold({force: true});
@@ -497,8 +499,8 @@ export const MediaPage = GObject.registerClass({
         const [playerTitle, sideTitle] = this._titles;
         const [playerArtist, sideArtist] = this._artists;
         playerTitle.text = sideTitle.text = nowPlaying.title;
-        playerArtist.text = [nowPlaying.artist, nowPlaying.album].filter(Boolean).join(' — ') || nowPlaying.identity;
-        sideArtist.text = nowPlaying.artist || nowPlaying.identity;
+        playerArtist.text = [nowPlaying.artist, nowPlaying.album].filter(Boolean).join(' — ') || playerName;
+        sideArtist.text = nowPlaying.artist || playerName;
         for (const art of this._arts)
             art.setPath(nowPlaying.art_path);
         this._updateTint(nowPlaying.art_path);
@@ -532,7 +534,7 @@ export const MediaPage = GObject.registerClass({
         if (!this._nextPlayer)
             return;
         this._playerIcon.gicon = Playback.playerApp(this._nextPlayer)?.get_icon() ?? icon('isle-music');
-        this._playerSwitch.accessible_name = `Switch to ${this._nextPlayer.identity}`;
+        this._playerSwitch.accessible_name = format('Switch to %s', Playback.playerName(this._nextPlayer));
     }
 
     /** Which app plays it, unless the cover already is that app's logo. */
@@ -550,7 +552,7 @@ export const MediaPage = GObject.registerClass({
         const audio = this._audio;
         setButtonIcon(this._muteButton, audio.iconName);
         this._volumeSlider.value = audio.muted ? 0 : audio.volume;
-        this._volumeText.text = audio.muted ? 'Muted' : `${Math.round(audio.volume * 100)}%`;
+        this._volumeText.text = audio.muted ? _('Muted') : `${Math.round(audio.volume * 100)}%`;
     }
 
     /** One row per output, the current one checked; a click switches to it. */

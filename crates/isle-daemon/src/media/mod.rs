@@ -8,6 +8,7 @@ mod art;
 mod gap;
 mod lyrics;
 mod mpris;
+mod source;
 
 use log::warn;
 use serde::Serialize;

@@ -17,10 +17,27 @@ OLD_VENV="$DATA/voice-venv"
 OLD_HELPER="$DATA/isle-whisper.py"
 HUB="${HF_HUB_CACHE:-${HF_HOME:-${XDG_CACHE_HOME:-$HOME/.cache}/huggingface}/hub}"
 
-# A step's heading, in bold.
-step() { printf '\033[1m==> %s\033[0m\n' "$*"; }
-# Says what went wrong and stops.
-fail() { printf 'isle-setup-voice: %s\n' "$*" >&2; exit 1; }
+HERE="$(dirname "$(readlink -f "$0")")"
+LOCALE="$HERE/../gnome-extension/locale"
+[ -d "$LOCALE" ] || LOCALE="${DATA%/isle}/gnome-shell/extensions/isle@zickrian.github.io/locale"
+[ -d "$LOCALE" ] || LOCALE=/usr/share/gnome-shell/extensions/isle@zickrian.github.io/locale
+
+message() {
+    if command -v gettext >/dev/null; then
+        TEXTDOMAINDIR="$LOCALE" gettext -d isle@zickrian.github.io "$1"
+    else
+        printf '%s' "$1"
+    fi
+}
+render() {
+    local text
+    text="$(message "$1")"
+    shift
+    printf -- "$text" "$@"
+}
+step() { printf '\033[1m==> %s\033[0m\n' "$(render "$@")"; }
+say() { printf '%s\n' "$(render "$@")"; }
+fail() { printf 'isle-setup-voice: %s\n' "$(render "$@")" >&2; exit 1; }
 
 MODEL=""
 GIVEN=0
@@ -29,8 +46,13 @@ for arg in "$@"; do
     case "$arg" in
         tiny | base | small | medium) MODEL="$arg" GIVEN=1 ;;
         --remove-old) REMOVE_OLD=1 ;;
-        -h | --help) sed -n '4,7s/^# \{0,1\}//p' "$0"; exit 0 ;;
-        *) fail "unknown argument '$arg' (a model is tiny, base, small or medium)" ;;
+        -h | --help)
+            say 'Sets up speech recognition for Isle: downloads the whisper.cpp model and verifies its SHA-256.'
+            say 'Usage: isle-setup-voice [tiny|base|small|medium] [--remove-old]'
+            say 'Uses the model you name, or the model in Settings → Assistant, or small.'
+            say '  --remove-old  also removes the old Python environment and faster-whisper models.'
+            exit 0 ;;
+        *) fail "unknown argument '%s' (a model is tiny, base, small or medium)" "$arg" ;;
     esac
 done
 if [ -z "$MODEL" ]; then
@@ -46,7 +68,7 @@ case "$MODEL" in
     base) set -- ggml-base-q8_0.bin c577b9a86e7e048a0b7eada054f4dd79a56bbfa911fbdacf900ac5b567cbb7d9 81768585 ;;
     small) set -- ggml-small-q8_0.bin 49c8fb02b65e6049d5fa6c04f81f53b867b5ec9540406812c643f177317f779f 264464607 ;;
     medium) set -- ggml-medium-q8_0.bin 42a1ffcbe4167d224232443396968db4d02d4e8e87e213d3ee2e03095dea6502 823369779 ;;
-    *) fail "Settings name an unknown model '$MODEL'; give one: isle-setup-voice small" ;;
+    *) fail "Settings name an unknown model '%s'; give one: isle-setup-voice small" "$MODEL" ;;
 esac
 FILE="$1" SHA="$2" SIZE="$3"
 # Silero, which finds where someone speaks so Whisper hears only that.
@@ -63,36 +85,35 @@ verified() { [ -f "$1" ] && [ "$(sha256sum "$1" | cut -d' ' -f1)" = "$2" ]; }
 fetch() {
     local url="$1" file="$MODELS/$2" sha="$3"
     if verified "$file" "$sha"; then
-        echo "Already downloaded: $file"
+        say "Already downloaded: %s" "$file"
         return
     fi
     # A .part file is carried on from where an interrupted download stopped.
     curl -fL --retry 3 --progress-bar -C - -o "$file.part" "$url" ||
         curl -fL --retry 3 --progress-bar -o "$file.part" "$url" ||
-        fail "could not download $url; check the internet connection and try again."
+        fail "could not download %s; check the internet connection and try again." "$url"
     if ! verified "$file.part" "$sha"; then
         rm -f "$file.part"
-        fail "$2 did not download correctly (its SHA-256 differs); run isle-setup-voice again."
+        fail "%s did not download correctly (its SHA-256 differs); run isle-setup-voice again." "$2"
     fi
     mv -f "$file.part" "$file"
 }
 
 mkdir -p "$MODELS"
-step "Downloading the '$MODEL' speech model ($((SIZE / 1000000)) MB) to $MODELS"
+step "Downloading the '%s' speech model (%s MB) to %s" "$MODEL" "$((SIZE / 1000000))" "$MODELS"
 fetch "$WHISPER_URL/$FILE" "$FILE" "$SHA"
 fetch "$VAD_URL/$VAD_FILE" "$VAD_FILE" "$VAD_SHA"
 # isled runs the model chosen in Settings, so a model named here becomes that choice.
 if [ "$GIVEN" = 1 ]; then
     if { gsettings --schemadir "$SCHEMAS" set org.gnome.shell.extensions.isle voice-speech-model "$MODEL" ||
         gsettings set org.gnome.shell.extensions.isle voice-speech-model "$MODEL"; } 2>/dev/null; then
-        echo "Settings → Assistant → Speech recognition is now '$MODEL'."
+        say "Settings → Assistant → Speech recognition is now '%s'." "$MODEL"
     else
-        echo "Pick '$MODEL' in Settings → Assistant → Speech recognition so Isle uses it."
+        say "Pick '%s' in Settings → Assistant → Speech recognition so Isle uses it." "$MODEL"
     fi
 fi
 
 # isle-whisper beside this script (both in ~/.local/bin), on the PATH, or built in the source folder.
-HERE="$(dirname "$(readlink -f "$0")")"
 WHISPER=""
 for candidate in "$HERE/isle-whisper" "$(command -v isle-whisper || true)" "$HERE/../target/release/isle-whisper"; do
     if [ -n "$candidate" ] && [ -x "$candidate" ]; then
@@ -101,8 +122,7 @@ for candidate in "$HERE/isle-whisper" "$(command -v isle-whisper || true)" "$HER
     fi
 done
 if [ -z "$WHISPER" ]; then
-    echo "isle-whisper, which runs the model, is not installed: install Isle again" \
-        "(from source it needs cmake and a C++ compiler; see the README)."
+    say "isle-whisper, which runs the model, is not installed: install Isle again (from source it needs cmake and a C++ compiler; see the README)."
 fi
 
 # The older setup, which isle-whisper replaces: only offered once isle-whisper is there to take over.
@@ -117,7 +137,7 @@ if [ -n "$WHISPER" ] && [ "${#OLD[@]}" -gt 0 ]; then
     # -L: the model files can be links into a shared cache.
     du -shL "${OLD[@]}" 2>/dev/null || true
     if [ "$REMOVE_OLD" = 0 ] && [ -t 0 ] && [ -t 1 ]; then
-        read -r -p "Delete them? [y/N] " answer
+        read -r -p "$(message "Delete them? [y/N] ")" answer
         case "$answer" in [yY]*) REMOVE_OLD=1 ;; esac
     fi
     if [ "$REMOVE_OLD" = 1 ]; then
@@ -131,9 +151,9 @@ if [ -n "$WHISPER" ] && [ "${#OLD[@]}" -gt 0 ]; then
             fi
             rm -rf "$old"
         done
-        echo "Deleted."
+        say "Deleted."
     else
-        echo "To delete them later: isle-setup-voice --remove-old"
+        say "To delete them later: isle-setup-voice --remove-old"
     fi
 fi
 
@@ -143,6 +163,6 @@ ISLED="$(command -v isled || echo "$HOME/.local/bin/isled")"
 if [ -x "$ISLED" ]; then
     "$ISLED" --doctor
 else
-    echo "isled is not installed yet; install Isle, then run isled --doctor."
+    say "isled is not installed yet; install Isle, then run isled --doctor."
 fi
-echo "Done. Pick the AI in Settings → Assistant if you have more than one, then press Super+I and speak."
+say "Done. Pick the AI in Settings → Assistant if you have more than one, then press Super+I and speak."

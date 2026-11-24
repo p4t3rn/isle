@@ -1,0 +1,3018 @@
+# Simplified Chinese translations for Isle.
+# SPDX-License-Identifier: GPL-3.0-or-later
+msgid ""
+msgstr ""
+"Project-Id-Version: Isle 1.7.3\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-11-25 00:41+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_CN\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../scripts/setup-voice.sh:53
+msgid ""
+"  --remove-old  also removes the old Python environment and faster-"
+"whisper models."
+msgstr "  --remove-old  同时删除旧的 Python 环境和 faster-whisper 模型。"
+
+#: src/pages/calendar.js
+msgid "%-d %B"
+msgstr "%-m月%-d日"
+
+#: src/format.js:58 src/format.js:88
+msgid "%-d %b"
+msgstr "%-m月%-d日"
+
+#: src/format.js:58 src/format.js:63
+msgid "%a %-d"
+msgstr "%a %-d日"
+
+#: src/format.js:58
+msgid "%a %-d %b"
+msgstr "%-m月%-d日 %a"
+
+#: src/alerts.js:696
+#, python-format
+msgid "%s %s doesn’t include %s"
+msgstr "%s %s 套餐不包含 %s"
+
+#: src/alerts.js:368
+#, python-format
+msgid "%s %s limit"
+msgstr "%s 的%s额度"
+
+#: prefs.js:336
+#, python-format
+msgid "%s (Island → Shortcuts). Everything stays on this computer."
+msgstr "%s（灵动岛 → 快捷键）。数据仅保存在这台电脑上。"
+
+#: ../install.sh:247
+#, python-format
+msgid ""
+"%s covers the island. Turn it off in the Extensions app or run: gnome-"
+"extensions disable %s"
+msgstr "%s 会遮挡灵动岛。请在「扩展」应用中关闭它，或运行：gnome-extensions disable %s"
+
+#: ../scripts/setup-voice.sh:97
+#, python-format
+msgid ""
+"%s did not download correctly (its SHA-256 differs); run isle-setup-voice"
+" again."
+msgstr "%s 下载校验失败（SHA-256 不匹配），请重新运行 isle-setup-voice。"
+
+#: src/alerts.js:578
+#, python-format
+msgid "%s files from your phone"
+msgstr "来自手机的 %s 个文件"
+
+#: src/alerts.js:623
+#, python-format
+msgid "%s finished"
+msgstr "%s已完成"
+
+#: src/alerts.js:441
+#, python-format
+msgid "%s in %s min"
+msgstr "%s将在 %s 分钟后开始"
+
+#: prefs.js:1045
+#, python-format
+msgid "%s is already %s"
+msgstr "%s 已用于 %s"
+
+#: src/alerts.js:678
+#, python-format
+msgid "%s is connected"
+msgstr "%s已连接"
+
+#: src/alerts.js:473
+#, python-format
+msgid "%s is done"
+msgstr "%s已完成"
+
+#: src/alerts.js:473
+#, python-format
+msgid "%s is waiting for you"
+msgstr "%s正在等待你的操作"
+
+#: src/alerts.js:696
+#, python-format
+msgid "%s isn’t available"
+msgstr "%s 当前不可用"
+
+#: src/pages/phone.js:253
+#, python-format
+msgid "%s left"
+msgstr "%s 已离开"
+
+#: src/alerts.js:368
+#, python-format
+msgid "%s limit"
+msgstr "%s 的额度"
+
+#: src/alerts.js:216
+#, python-format
+msgid "%s minutes of focus"
+msgstr "专注 %s 分钟"
+
+#: src/alerts.js:599
+#, python-format
+msgid "%s needs permission"
+msgstr "%s需要授权"
+
+#: src/alerts.js:473
+#, python-format
+msgid "%s needs your OK"
+msgstr "%s需要你确认"
+
+#: src/alerts.js:756
+#, python-format
+msgid "%s new notifications"
+msgstr "%s 条新通知"
+
+#: src/alerts.js:441
+#, python-format
+msgid "%s now"
+msgstr "%s现在开始"
+
+#: src/pages/shelf.js:551
+#, python-format
+msgid "%s of %s · click to copy, or drag into any app"
+msgstr "%s / %s · 点击复制或拖到任意应用"
+
+#: src/pages/shelf.js:550
+#, python-format
+msgid "%s of %s · click to copy, ↓ to save, or drag out"
+msgstr "%s / %s · 点击复制，↓ 保存，或拖出文件"
+
+#: prefs.js:336
+#, python-format
+msgid "%s opens it"
+msgstr "通过 %s 打开"
+
+#: src/pages/phone.js:320
+#, python-format
+msgid "%s · %s · away"
+msgstr "%s · %s · 已离开"
+
+#: src/alerts.js:384
+#, python-format
+msgid "%s · resets %s"
+msgstr "%s · %s重置"
+
+#: src/alerts.js:558
+#, python-format
+msgid "%s · the same code on the phone?"
+msgstr "%s · 手机上显示的验证码一致吗？"
+
+#: prefs.js:907
+msgid "%s% black"
+msgstr "%s% 黑色"
+
+#: prefs.js:857
+msgid "%s% darker"
+msgstr "加深 %s%"
+
+#: src/format.js:86 src/format.js:99
+#, python-format
+msgid "%sh"
+msgstr "%s 小时"
+
+#: src/format.js:98
+#, python-format
+msgid "%sh %sm"
+msgstr "%s 小时 %s 分钟"
+
+#: src/format.js:84 src/format.js:98 src/format.js:99
+#, python-format
+msgid "%sm"
+msgstr "%s 分钟"
+
+#: prefs.js:214
+#, python-format
+msgid "%s’s default"
+msgstr "%s的默认模型"
+
+#: src/pages/clips.js:494
+#, python-format
+msgid "+%s more"
+msgstr "另有 %s 项"
+
+#: src/pages/calendar.js
+msgid ", "
+msgstr "，"
+
+#: ../install.sh:33 ../scripts/setup-voice.sh:38 src/format.js:91
+#: src/format.js:94 src/voice.js:1087
+msgid "0m"
+msgstr "0 分钟"
+
+#: src/alerts.js:756
+msgid "1 new notification"
+msgstr "1 条新通知"
+
+#: prefs.js:399
+msgid "12- or 24-hour, wherever Isle shows the time"
+msgstr "整个 Isle 统一使用 12 小时制或 24 小时制"
+
+#: prefs.js:403
+msgid "12-hour (8:40 PM)"
+msgstr "12 小时制（晚上 8:40）"
+
+#: prefs.js:279
+msgid "2 hours without a word"
+msgstr "空闲 2 小时"
+
+msgid "30 days"
+msgstr "30 天"
+
+#: prefs.js:280
+msgid "30 minutes without a word"
+msgstr "空闲 30 分钟"
+
+#: src/alerts.js:365
+msgid "5-hour limit"
+msgstr "5 小时额度"
+
+msgid "7 days"
+msgstr "7 天"
+
+#: src/format.js:91 src/format.js:94
+msgid "<1m"
+msgstr "不足 1 分钟"
+
+#: prefs.js:747
+msgid "A colour of your own"
+msgstr "自定义颜色"
+
+#: prefs.js:474
+msgid "A device’s battery low, at 20, 10 and 5%"
+msgstr "设备电量降至 20%、10% 和 5% 时提醒"
+
+#: prefs.js:384
+msgid "A little room between the closed island and the windows below"
+msgstr "在收起的灵动岛与下方窗口之间留出一点间距"
+
+#: prefs.js:67
+msgid ""
+"A notch-style island for GNOME. © 2026 zickrian, free software under the "
+"GPL."
+msgstr "适用于 GNOME 的灵动岛。© 2026 zickrian，依据 GPL 许可发布的自由软件。"
+
+#: prefs.js:149
+msgid "AI Agents"
+msgstr "AI 编程助手"
+
+#: prefs.js:171 prefs.js:1119
+msgid "AI Assistant"
+msgstr "AI 助手"
+
+#: prefs.js:109 prefs.js:112 prefs.js:998 prefs.js:1111
+msgid "AI Usage"
+msgstr "AI 用量"
+
+#: src/expanded.js:193
+msgid "AI assistant"
+msgstr "AI 助手"
+
+#: prefs.js:65
+msgid "About"
+msgstr "关于"
+
+#: prefs.js:306
+msgid "About the AIs"
+msgstr "关于 AI 服务"
+
+#: prefs.js:1305
+msgid "Add a City"
+msgstr "添加城市"
+
+#: prefs.js:1227 prefs.js:1228
+msgid "Add a City…"
+msgstr "添加城市…"
+
+#: prefs.js:2118
+msgid "Add an app"
+msgstr "添加应用"
+
+#: src/pages/calendar.js:415
+msgid "Add calendars in Online Accounts"
+msgstr "在「在线账号」中添加日历"
+
+#: src/pages/calendar.js:818
+#, python-format
+msgid "Add event · e.g. Dinner %s"
+msgstr "添加日程 · 例如：晚餐 %s"
+
+#: src/pages/clips.js:594
+msgid "Add to Reminders"
+msgstr "添加到提醒事项"
+
+#: src/pages/clips.js:578
+msgid "Add to the Files tab"
+msgstr "添加到「文件」"
+
+#: src/pages/clips.js:591
+msgid "Added to Files"
+msgstr "已添加到「文件」"
+
+#: src/pages/clips.js:599
+msgid "Added to Reminders"
+msgstr "已添加到提醒事项"
+
+#: src/pages/shelf.js:545
+msgid "Added · click to copy, or drag it into any app"
+msgstr "已添加，可点击复制或拖到任意应用"
+
+#: prefs.js:607
+msgid "After a break ends"
+msgstr "休息结束后"
+
+#: src/alerts.js:48
+msgid "Airplane mode"
+msgstr "飞行模式"
+
+#: prefs.js:461
+msgid "Alerts"
+msgstr "提醒"
+
+#: prefs.js:469
+msgid ""
+"Alerts show over a video or game, then hide again; off, they wait until "
+"it leaves full screen"
+msgstr "开启后，提醒会短暂显示在全屏视频或游戏上。关闭后，退出全屏才显示。"
+
+#: src/pages/calendar.js:1018 src/pages/calendar.js:1121
+msgid "All day"
+msgstr "全天"
+
+#: prefs.js:424
+msgid "All displays"
+msgstr "所有显示器"
+
+#: src/pages/tasks.js:252
+msgid "All done"
+msgstr "已全部完成"
+
+#: src/alerts.js:562 src/pages/phone.js:288
+msgid "Allow"
+msgstr "允许"
+
+#: src/pages/phone.js:290
+#, python-format
+msgid "Allow %s with code %s"
+msgstr "允许 %s（验证码 %s）"
+
+#: src/alerts.js:555
+#, python-format
+msgid "Allow %s — code %s?"
+msgstr "要允许%s吗？验证码 %s"
+
+#: src/alerts.js:476
+#, python-format
+msgid "Allow %s?"
+msgstr "要允许%s吗？"
+
+#: src/pages/phone.js:37
+msgid "Allow it here with the code it shows"
+msgstr "对照手机上的验证码，在这里允许连接"
+
+#: prefs.js:830
+msgid ""
+"Allow or deny, and when it is done · in Codex, type /hooks once and allow"
+" Isle"
+msgstr "允许或拒绝，并接收任务完成通知。首次在 Codex 输入 /hooks 并允许 Isle。"
+
+#: prefs.js:829
+msgid "Allow, deny or always allow, and when it is done"
+msgstr "允许、拒绝或始终允许，并接收任务完成通知"
+
+#: src/peek.js:450
+msgid "Allowed"
+msgstr "已允许"
+
+#: ../scripts/setup-voice.sh:88
+#, python-format
+msgid "Already downloaded: %s"
+msgstr "已下载：%s"
+
+#: prefs.js:441 src/alerts.js:593
+msgid "Always"
+msgstr "始终"
+
+#: src/alerts.js:593
+msgid "Always allowed here"
+msgstr "已设为始终允许"
+
+#: prefs.js:410
+msgid ""
+"An extra clock at the left or right end of the bar. Click it to open the "
+"calendar"
+msgstr "在顶栏左端或右端加一个时钟，点击即可打开日历"
+
+#: prefs.js:1873
+msgid "Another install of Isle is running; wait for it, then try again"
+msgstr "Isle 正在进行另一项安装，请等它结束后重试"
+
+#: src/alerts.js:679
+msgid "Answer it from here when it asks"
+msgstr "它请求时可直接在此处回复"
+
+#: prefs.js:150
+msgid ""
+"Answer your coding agents from the island when they ask, and know when "
+"they are done. On by default; off, Isle stops getting that agent's "
+"alerts."
+msgstr "从灵动岛响应编程助手的请求，并接收任务完成通知。默认开启，关闭后 Isle 将停止接收该助手的提醒。"
+
+#: prefs.js:181
+msgid "Answers with your own sign-in; Isle runs its actions"
+msgstr "使用你登录的账号回答，由 Isle 执行相应操作"
+
+#: prefs.js:272
+msgid "Any (detected)"
+msgstr "自动检测"
+
+#: prefs.js:1197 src/pages/apps.js:78
+msgid "App Usage"
+msgstr "应用使用时长"
+
+#: prefs.js:363
+msgid "Appearance"
+msgstr "外观"
+
+#: prefs.js:997 prefs.js:1106 src/expanded.js:41
+msgid "Apps"
+msgstr "应用"
+
+#: prefs.js:464
+msgid "Apps’ notifications in the island, with their buttons, as GNOME shows them"
+msgstr "在灵动岛中显示应用通知及其操作按钮"
+
+#: prefs.js:400
+msgid "As GNOME"
+msgstr "跟随 GNOME"
+
+#: src/controller.js:2768
+msgid "Ask again from the mic in the island."
+msgstr "点击灵动岛中的麦克风再问一次。"
+
+#: src/voice.js:315
+msgid "Ask anything…"
+msgstr "问点什么…"
+
+#: src/voice.js:31
+msgid "Asked to run it"
+msgstr "已请求运行"
+
+#: prefs.js:1979
+msgid "Asks GitHub once a day; nothing else is sent"
+msgstr "每天在 GitHub 上检查一次，不发送其他数据"
+
+#: prefs.js:163 prefs.js:1710
+msgid "Assistant"
+msgstr "助手"
+
+#: prefs.js:760
+msgid "Assistant colour"
+msgstr "助手颜色"
+
+#: prefs.js:439
+msgid "Auto-hide"
+msgstr "自动隐藏"
+
+#: prefs.js
+#, python-format
+msgid "Automatic (%s)"
+msgstr "自动（%s）"
+
+#: prefs.js:87
+msgid "Back to how Isle came; your data stays"
+msgstr "恢复默认设置，保留你的数据"
+
+#: src/pages/media.js:348
+msgid "Back to the player"
+msgstr "返回播放器"
+
+#: prefs.js:477
+msgid "Before each event with a time, with Join for a Meet, Zoom or Teams link"
+msgstr "在有具体时间的日程开始前提醒。若包含 Meet、Zoom 或 Teams 链接，显示「加入」按钮。"
+
+#: prefs.js:443
+msgid "Beside windows"
+msgstr "窗口贴近时"
+
+#: prefs.js:265
+msgid "Bigger is more accurate, and slower; downloaded once"
+msgstr "模型越大，识别越准确，速度也越慢。每个模型只需下载一次。"
+
+#: prefs.js:365 prefs.js:898
+msgid "Black"
+msgstr "黑色"
+
+#: prefs.js:968
+msgid "Black top bar beside windows"
+msgstr "窗口贴近时顶栏变黑"
+
+#: prefs.js:364
+msgid "Black, or clear glass that shows what is behind it, blurred"
+msgstr "黑色底板，或模糊后方内容的透明玻璃"
+
+#: prefs.js:472 src/alerts.js:52
+msgid "Bluetooth"
+msgstr "蓝牙"
+
+#: prefs.js:473
+msgid "Bluetooth battery"
+msgstr "蓝牙设备电量"
+
+#: ../install.sh:242
+#, python-format
+msgid ""
+"Blur my Shell darkens the top bar. To blur only the rest, turn off Blur "
+"my Shell → Panel → Blur or run: %s"
+msgstr "Blur my Shell 会使顶栏变暗。若只想模糊其他区域，请关闭 Blur my Shell → Panel → Blur，或运行：%s"
+
+#: src/pages/timer.js:22 src/pages/timer.js:34
+msgid "Break"
+msgstr "休息"
+
+#: src/alerts.js:215
+msgid "Break is over"
+msgstr "休息结束"
+
+#: prefs.js:481
+msgid "Briefly show the song when the track changes"
+msgstr "曲目切换时短暂显示歌曲信息"
+
+#: src/alerts.js:45
+msgid "Brightness"
+msgstr "亮度"
+
+#: ../install.sh:77
+msgid "Building isle-shelf"
+msgstr "正在构建 isle-shelf"
+
+#: ../install.sh:90
+msgid "Building isle-whisper"
+msgstr "正在构建 isle-whisper"
+
+#: ../install.sh:74
+msgid "Building isled"
+msgstr "正在构建 isled"
+
+#: src/alerts.js:59
+msgid "Built-in Display"
+msgstr "内置显示器"
+
+#: prefs.js:992 src/expanded.js:40
+msgid "Calendar"
+msgstr "日历"
+
+#: prefs.js:476
+msgid "Calendar events"
+msgstr "日历日程"
+
+#: src/pages/calendar.js:378
+msgid "Calendar for new events"
+msgstr "新日程使用的日历"
+
+#: src/expanded.js:34
+msgid "Call"
+msgstr "通话"
+
+#: prefs.js:487
+msgid "Calls"
+msgstr "通话"
+
+#: prefs.js:490
+msgid "Calls in the island"
+msgstr "在灵动岛显示通话"
+
+#: src/alerts.js:50
+msgid "Camera"
+msgstr "摄像头"
+
+#: prefs.js:1732 prefs.js:1788 src/controller.js:731
+msgid "Cancel"
+msgstr "取消"
+
+#: src/pages/lyrics.js:38
+msgid "Can’t reach the lyrics"
+msgstr "无法获取歌词"
+
+#: src/pages/phone.js:232
+msgid "Can’t scan? Send the link another way"
+msgstr "无法扫码？可以用其他方式发送链接"
+
+#: src/alerts.js:92 src/alerts.js:100
+msgid "Caps Lock"
+msgstr "大写锁定"
+
+#: src/alerts.js:119
+msgid "Charger connected"
+msgstr "已接通电源"
+
+#: src/alerts.js:119
+msgid "Charger disconnected"
+msgstr "已断开电源"
+
+#: src/alerts.js:118
+msgid "Charging"
+msgstr "正在充电"
+
+#: prefs.js:470
+msgid "Charging and battery"
+msgstr "充电和电池"
+
+#: src/chat.js:484
+msgid "Chat"
+msgstr "对话"
+
+#: prefs.js:1979
+msgid "Check for new versions"
+msgstr "检查新版本"
+
+#: src/pages/lyrics.js:38
+msgid "Check your connection · trying again soon"
+msgstr "请检查网络连接，稍后将重试"
+
+#: ../scripts/setup-voice.sh:161
+msgid "Checking"
+msgstr "正在检查"
+
+#: prefs.js:235
+msgid "Checking which models your plan includes…"
+msgstr "正在检查你的套餐可用的模型…"
+
+#: prefs.js:483
+msgid "Chime when a focus session or break ends, and for reminders"
+msgstr "专注或休息结束时播放提示音，提醒事项也会播放"
+
+#: prefs.js:2119
+msgid "Choose…"
+msgstr "选择…"
+
+#: prefs.js:775
+msgid "Classic"
+msgstr "经典"
+
+#: prefs.js:307
+msgid ""
+"Claude Code and Codex answer within your Claude or ChatGPT plan's limits;"
+" opencode and Pi with the providers you signed in to in them (Pi searches"
+" no web). Antigravity's terms bar third-party tools from its service; "
+"Isle only runs the official agy app, but use it at your own risk. Each is"
+" kept to answering: commands and file changes go through Isle, which asks"
+" you first."
+msgstr ""
+"Claude Code 和 Codex 使用你的 Claude 或 ChatGPT 套餐。opencode 和 Pi 使用你在其中登录的服务，Pi"
+" 不搜索网页。Antigravity 的条款禁止第三方工具使用其服务，Isle 仅运行官方 agy 应用，请自行评估使用风险。AI "
+"只负责回答，命令和文件修改由 Isle 在询问你后执行。"
+
+#: prefs.js:288 prefs.js:849 prefs.js:1205 prefs.js:1778 prefs.js:1780
+#: src/pages/notifications.js:86
+msgid "Clear"
+msgstr "清除"
+
+#: src/pages/shelf.js:210
+msgid "Clear all"
+msgstr "全部清除"
+
+#: prefs.js:1200
+msgid "Clear app usage"
+msgstr "清除应用使用记录"
+
+#: prefs.js:1203
+msgid "Clear app usage?"
+msgstr "要清除应用使用记录吗？"
+
+#: prefs.js:1776
+msgid "Clear clipboard history?"
+msgstr "要清除剪贴板历史吗？"
+
+#: prefs.js:855
+msgid "Clear glass: what is behind shows through"
+msgstr "清透玻璃，可以看到后方内容"
+
+#: prefs.js:343
+msgid "Clear history"
+msgstr "清除历史"
+
+#: src/pages/shelf.js:209
+msgid "Clear the clipboard history"
+msgstr "清除剪贴板历史"
+
+#: prefs.js:282
+msgid "Clear the conversation now"
+msgstr "立即清除对话"
+
+#: prefs.js:286
+msgid "Clear the conversation?"
+msgstr "要清除对话吗？"
+
+#: prefs.js:344 prefs.js:1201
+msgid "Clear…"
+msgstr "清除…"
+
+#: prefs.js:318 src/pages/shelf.js:23
+msgid "Clipboard"
+msgstr "剪贴板"
+
+#: prefs.js:321
+msgid "Clipboard History"
+msgstr "剪贴板历史"
+
+#: prefs.js:991
+msgid "Clipboard history (Super+V), the files tray and sharing with a phone"
+msgstr "剪贴板历史（Super+V）、文件托盘和手机分享"
+
+#: src/pages/clips.js:285
+msgid "Clipboard history is off"
+msgstr "剪贴板历史已关闭"
+
+#: prefs.js:404
+msgid "Clock in the island"
+msgstr "灵动岛时钟"
+
+#: prefs.js:409
+msgid "Clock in the top bar"
+msgstr "顶栏时钟"
+
+#: src/widgets.js:211
+msgid "Close"
+msgstr "关闭"
+
+#: src/pages/phone.js:282
+#, python-format
+msgid "Code %s"
+msgstr "验证码 %s"
+
+#: src/pages/phone.js:45
+msgid "Code to open the Shelf on your phone"
+msgstr "用于在手机上打开文件托盘的二维码"
+
+#: prefs.js:769
+msgid "Colour"
+msgstr "颜色"
+
+#: prefs.js:373
+msgid "Colour the top bar"
+msgstr "自定义顶栏颜色"
+
+#: prefs.js:377
+msgid "Compact top bar"
+msgstr "紧凑顶栏"
+
+#: src/alerts.js:169 src/pages/devices.js:141
+msgid "Connected"
+msgstr "已连接"
+
+#: prefs.js:1109
+msgid ""
+"Connected Bluetooth devices and their battery; its tab shows while one is"
+" connected"
+msgstr "显示已连接的蓝牙设备及电量，有设备连接时显示此标签页"
+
+#: src/chat.js:559
+msgid "Conversation"
+msgstr "对话"
+
+#: prefs.js:1966 src/chat.js:433 src/pages/phone.js:383 src/pages/shelf.js:661
+msgid "Copied"
+msgstr "已复制"
+
+#: prefs.js:2101
+msgid "Copied: paste it into the report on GitHub"
+msgstr "已复制，可粘贴到 GitHub 的问题报告中"
+
+#: prefs.js:79
+msgid "Copy a bug report"
+msgstr "复制诊断报告"
+
+#: prefs.js:1962 prefs.js:1968
+msgid "Copy command"
+msgstr "复制命令"
+
+#: src/pages/phone.js:234
+msgid "Copy fix"
+msgstr "复制修复命令"
+
+#: src/pages/phone.js:234
+msgid "Copy link"
+msgstr "复制链接"
+
+#: src/chat.js:100
+msgid "Copy the command"
+msgstr "复制命令"
+
+#: prefs.js:2104
+msgid "Couldn’t make the report; try again"
+msgstr "无法生成诊断报告，请重试"
+
+#: src/alerts.js:528
+msgid "Couldn’t save to Downloads"
+msgstr "无法保存到「下载」"
+
+#: src/pages/shelf.js:343
+msgid "Couldn’t start sharing · is Isle’s service running?"
+msgstr "无法开始共享，请检查 Isle 服务是否正在运行"
+
+#: src/alerts.js:713
+#, python-format
+msgid "Couldn’t turn on %s alerts"
+msgstr "无法开启 %s 提醒"
+
+#: prefs.js:2030
+msgid "Couldn’t update"
+msgstr "更新失败"
+
+#: prefs.js:775
+msgid "Custom"
+msgstr "自定义"
+
+#: prefs.js:851
+msgid "Dark"
+msgstr "深色"
+
+#: prefs.js:856
+msgid "Dark frosted glass"
+msgstr "深色磨砂玻璃"
+
+#: prefs.js:948
+msgid "Date"
+msgstr "日期"
+
+#: prefs.js:947
+msgid "Day"
+msgstr "星期"
+
+#: prefs.js:214
+#, python-format
+msgid "Default (%s)"
+msgstr "默认（%s）"
+
+#: src/pages/tasks.js:327
+msgid "Delete reminder"
+msgstr "删除提醒"
+
+#: ../scripts/setup-voice.sh:140
+msgid "Delete them? [y/N] "
+msgstr "要删除这些文件吗？[y/N] "
+
+#: ../scripts/setup-voice.sh:154
+msgid "Deleted."
+msgstr "已删除。"
+
+#: prefs.js:282
+msgid "Deletes it here and the AI's copy of it"
+msgstr "删除本地及 AI 保存的对话副本"
+
+#: src/chat.js:35 src/peek.js:450
+msgid "Denied"
+msgstr "已拒绝"
+
+#: src/alerts.js:561 src/chat.js:308 src/pages/phone.js:287
+msgid "Deny"
+msgstr "拒绝"
+
+#: src/pages/phone.js:289
+#, python-format
+msgid "Deny %s with code %s"
+msgstr "拒绝 %s（验证码 %s）"
+
+#: prefs.js:997 prefs.js:1108 src/expanded.js:42
+msgid "Devices"
+msgstr "设备"
+
+#: prefs.js:472
+msgid "Devices connecting, with their battery"
+msgstr "设备连接时提醒并显示电量"
+
+#: src/alerts.js:169
+msgid "Disconnected"
+msgstr "已断开"
+
+#: src/pages/notifications.js:219
+msgid "Dismiss"
+msgstr "关闭"
+
+#: prefs.js:421 src/alerts.js:55
+msgid "Display"
+msgstr "显示器"
+
+#: prefs.js:423
+msgid "Display in use"
+msgstr "当前使用的显示器"
+
+#: prefs.js:503 src/pages/notifications.js:84
+msgid "Do Not Disturb"
+msgstr "勿扰模式"
+
+#: src/pages/notifications.js:98
+msgid "Do Not Disturb: new ones wait here; urgent ones still show"
+msgstr "勿扰模式已开启。新通知保留在这里，紧急通知仍会显示。"
+
+#: src/alerts.js:776 src/chat.js:33 src/pages/calendar.js:357
+msgid "Done"
+msgstr "完成"
+
+#: ../scripts/setup-voice.sh:168
+msgid ""
+"Done. Pick the AI in Settings → Assistant if you have more than one, then"
+" press Super+I and speak."
+msgstr "设置完成。若有多个 AI，请在「设置 → 助手」中选择，然后按 Super+I 说话。"
+
+#: prefs.js:420
+msgid "Dots when the camera, microphone or screen sharing is in use"
+msgstr "使用摄像头、麦克风或共享屏幕时显示圆点"
+
+#: prefs.js:1972
+msgid "Download"
+msgstr "下载"
+
+#: prefs.js:2025
+msgid "Downloading and installing; Settings can be closed"
+msgstr "正在下载并安装，可以关闭设置窗口"
+
+#: ../scripts/setup-voice.sh:103
+#, python-format
+msgid "Downloading the '%s' speech model (%s MB) to %s"
+msgstr "正在下载「%s」语音模型（%s MB）到 %s"
+
+#: src/pages/files.js:306
+msgid "Drop files here, then drag them into any app"
+msgstr "把文件拖到这里，再拖到任意应用"
+
+#: src/pages/files.js:314
+msgid "Drop to add it"
+msgstr "拖到这里即可添加"
+
+#: src/pages/shelf.js:543
+msgid "Drop to keep it on the shelf"
+msgstr "拖到这里以保存到文件托盘"
+
+#: src/pages/files.js:308
+msgid "Dropping files here isn’t set up; install Isle again to add it"
+msgstr "文件拖放功能未安装，请重新安装 Isle"
+
+#: prefs.js:275
+msgid "English"
+msgstr "英语"
+
+#: src/alerts.js:204
+#, python-format
+msgid "Enjoy a %s-minute break"
+msgstr "休息 %s 分钟"
+
+#: prefs.js:1204
+msgid "Every app’s time recorded so far is removed. This cannot be undone."
+msgstr "所有应用的累计使用记录将被删除，且无法撤销。"
+
+#: prefs.js:91
+msgid ""
+"Every option goes back to its default. Your tasks, events, clipboard "
+"history and files stay."
+msgstr "所有选项将恢复默认值。你的任务、日程、剪贴板历史和文件会保留。"
+
+#: prefs.js:322
+msgid "Everything stays on this computer."
+msgstr "数据仅保存在这台电脑上。"
+
+#: prefs.js:1777
+msgid "Everything you copied is removed. Pinned items stay."
+msgstr "已复制的内容将被清除，已固定的项目会保留。"
+
+#: src/chat.js:34
+msgid "Failed"
+msgstr "失败"
+
+#: prefs.js:77
+msgid "Features, installing and updating"
+msgstr "功能介绍、安装和更新"
+
+#: src/pages/shelf.js:24
+msgid "Files"
+msgstr "文件"
+
+#: src/pages/clips.js:584
+msgid "Files is full"
+msgstr "文件托盘已满"
+
+#: src/voice.js:61
+msgid "Find "
+msgstr "查找 "
+
+#: src/voice.js:61
+msgid "Find a file…"
+msgstr "查找文件…"
+
+#: prefs.js:235
+msgid "Finding your providers’ models…"
+msgstr "正在查找服务提供商的模型…"
+
+#: src/alerts.js:617
+msgid "Finished"
+msgstr "已完成"
+
+#: src/format.js:105 src/pages/timer.js:20 src/pages/timer.js:21
+#: src/pages/timer.js:54 src/pages/timer.js:303
+msgid "Focus"
+msgstr "专注"
+
+#: prefs.js:602
+msgid "Focus (minutes)"
+msgstr "专注时长（分钟）"
+
+#: src/alerts.js:203
+msgid "Focus session done"
+msgstr "专注结束"
+
+#: prefs.js:508
+msgid "Focus sessions with short breaks, and a long break after a few sessions."
+msgstr "专注与短休息交替，完成几轮后安排一次长休息。"
+
+#: ../install.sh:95
+msgid ""
+"For the GPU: 'sudo apt install libvulkan-dev glslc', then run this script"
+" again."
+msgstr "如需使用 GPU，请运行 sudo apt install libvulkan-dev glslc，再运行本脚本。"
+
+#: prefs.js:1200
+msgid "Forget every day recorded so far"
+msgstr "清除迄今保存的所有记录"
+
+#: src/pages/usage.js:363
+#, python-format
+msgid "From Codex, %s"
+msgstr "来自 Codex，%s"
+
+#: src/alerts.js:579
+msgid "From your phone · on the Shelf"
+msgstr "来自手机 · 已放入文件托盘"
+
+#: src/pages/shelf.js:539
+msgid "Full · remove a file first"
+msgstr "文件托盘已满，请先移除一个文件"
+
+#: src/pages/shelf.js:547
+msgid "Full · remove a file to add another"
+msgstr "文件托盘已满，移除文件后可添加"
+
+#: src/alerts.js:142
+msgid "Fully charged"
+msgstr "电量已充满"
+
+#: prefs.js:1223
+msgid "GNOME’s world clocks are not available here"
+msgstr "当前无法使用 GNOME 的世界时钟"
+
+#: ../install.sh:85
+msgid ""
+"GTK 4 development files not found: skipping isle-shelf (drag and drop on "
+"the shelf)."
+msgstr "缺少 GTK 4 开发文件，将跳过 isle-shelf 的文件拖放功能。"
+
+#: src/voice.js:714
+msgid "Getting ready…"
+msgstr "正在准备…"
+
+#: prefs.js:1864
+msgid "GitHub had a problem just now; try again in a while"
+msgstr "GitHub 暂时出现问题，请稍后重试"
+
+#: prefs.js:1863
+msgid "GitHub limits how often it is asked; try again in an hour"
+msgstr "GitHub 限制了请求频率，请一小时后重试"
+
+#: prefs.js:366 prefs.js:843 prefs.js:896
+msgid "Glass"
+msgstr "玻璃"
+
+#: prefs.js:774
+msgid "Glow"
+msgstr "辉光"
+
+#: prefs.js:776
+msgid "Glow colour"
+msgstr "辉光颜色"
+
+#: src/pages/call.js:243
+msgid "Go to the call"
+msgstr "进入通话"
+
+#: src/pages/calendar.js:306
+msgid "Go to today"
+msgstr "跳到今天"
+
+#: src/pages/call.js:354
+msgid "Hidden while sharing"
+msgstr "共享屏幕时隐藏"
+
+#: src/pages/clips.js:277
+msgid "Hidden while you share your screen"
+msgstr "共享屏幕时隐藏"
+
+#: prefs.js:446
+msgid "Hide after"
+msgstr "隐藏延迟"
+
+#: src/pages/media.js:315
+msgid "Hide lyrics"
+msgstr "隐藏歌词"
+
+#: prefs.js:439
+msgid ""
+"Hide the closed island; alerts still show, and pointing at its place "
+"brings it back"
+msgstr "隐藏已收起的灵动岛。提醒仍会显示，将指针移到原位置可重新显示。"
+
+#: src/chat.js:489
+msgid "Hide the conversation"
+msgstr "隐藏对话"
+
+#: src/pages/media.js:270
+msgid "Hide until it plays again"
+msgstr "隐藏，直到重新播放"
+
+#: prefs.js:1960
+msgid "How"
+msgstr "说明"
+
+#: src/voice.js:1100
+msgid "How can I help?"
+msgstr "有什么可以帮你？"
+
+#: prefs.js:381
+msgid "How far the closed island hangs below the top bar, in pixels"
+msgstr "收起时向顶栏下方延伸的距离，单位为像素"
+
+#: prefs.js:114
+msgid ""
+"How much of your plans' limits is used, on a Usage page in the open "
+"island, with a warning as one nears its end. Found from the apps you are "
+"signed in to; nothing else to set up."
+msgstr "在灵动岛的用量页面查看套餐额度，并在接近上限时收到提醒。Isle 会识别你已登录的应用。"
+
+#: prefs.js:680
+msgid "How the assistant looks, and the light it brings to the island."
+msgstr "调整助手的外观和灵动岛的发光效果。"
+
+#: prefs.js:426
+msgid "How the closed island opens"
+msgstr "灵动岛收起时的展开方式"
+
+#: src/pages/shelf.js:30
+msgid "Images"
+msgstr "图片"
+
+#: src/alerts.js:679
+msgid "In Codex, type /hooks once and allow Isle"
+msgstr "请在 Codex 中输入 /hooks 并允许 Isle"
+
+#: prefs.js:432
+msgid "In milliseconds"
+msgstr "单位为毫秒"
+
+#: prefs.js:274
+msgid "Indonesian"
+msgstr "印度尼西亚语"
+
+#: prefs.js:273
+msgid "Indonesian or English"
+msgstr "印度尼西亚语或英语"
+
+#: src/voice.js:60
+msgid "Install "
+msgstr "安装 "
+
+#: prefs.js:1880
+#, python-format
+msgid "Install %s, then try again"
+msgstr "请先安装 %s，再重试"
+
+#: prefs.js:182
+msgid ""
+"Install Claude Code, Codex, Grok, opencode, Pi or Antigravity (agy), and "
+"sign in"
+msgstr "安装 Claude Code、Codex、Grok、opencode、Pi 或 Antigravity（agy）并登录"
+
+#: src/voice.js:60
+msgid "Install an app…"
+msgstr "安装应用…"
+
+#: ../install.sh:105
+msgid ""
+"Install them with 'sudo apt install cmake g++ libclang-dev' and run this "
+"script again."
+msgstr "请运行 sudo apt install cmake g++ libclang-dev 安装依赖，然后重新运行本脚本。"
+
+#: ../install.sh:86
+msgid ""
+"Install them with 'sudo apt install libgtk-4-dev' and run this script "
+"again."
+msgstr "请运行 sudo apt install libgtk-4-dev 安装依赖，然后重新运行本脚本。"
+
+#: ../install.sh:109
+#, python-format
+msgid "Installing binaries to %s"
+msgstr "正在将程序安装到 %s"
+
+#: ../install.sh:120
+msgid "Installing services"
+msgstr "正在安装后台服务"
+
+#: ../install.sh:142
+msgid "Installing the GNOME Shell extension"
+msgstr "正在安装 GNOME Shell 扩展"
+
+#: ../install.sh:136
+msgid "Installing the Inter font"
+msgstr "正在安装 Inter 字体"
+
+#: src/pages/lyrics.js:36
+msgid "Instrumental"
+msgstr "纯音乐"
+
+#: prefs.js:361 prefs.js:364
+msgid "Island"
+msgstr "灵动岛"
+
+#: prefs.js:381
+msgid "Island height"
+msgstr "灵动岛高度"
+
+#: prefs.js:378
+msgid "Island inside the top bar"
+msgstr "灵动岛嵌入顶栏"
+
+#: ../install.sh:259
+#, python-format
+msgid "Isle %s is installed"
+msgstr "Isle %s 安装完成"
+
+#: src/alerts.js:726
+#, python-format
+msgid "Isle %s is out"
+msgstr "Isle %s 已发布"
+
+#: src/alerts.js:784
+msgid "Isle Assistant"
+msgstr "Isle 助手"
+
+#: src/alerts.js:785
+msgid "Isle Assistant · Click to read more"
+msgstr "Isle 助手 · 点击查看更多"
+
+#: prefs.js:2053
+msgid "Isle asks GitHub once a day"
+msgstr "Isle 每天在 GitHub 上检查一次"
+
+#: prefs.js:1862
+msgid "Isle couldn’t reach GitHub; check the internet connection"
+msgstr "Isle 无法连接 GitHub，请检查网络连接"
+
+#: src/controller.js:2712
+msgid "Isle couldn’t take that"
+msgstr "Isle 无法处理这项请求"
+
+#: prefs.js:1869
+msgid "Isle couldn’t write its files; try again"
+msgstr "Isle 无法写入文件，请重试"
+
+#: ../install.sh:255
+msgid ""
+"Isle is also installed system-wide (a .deb, .rpm or AUR package): this "
+"install in your home folder takes precedence for you."
+msgstr "检测到系统级的 Isle 安装（.deb、.rpm 或 AUR）。你当前的用户会话优先使用个人目录中的版本。"
+
+#: ../install.sh:261
+#, python-format
+msgid "Isle is updated to %s"
+msgstr "Isle 已更新到 %s"
+
+#: prefs.js:2093
+msgid "Isle isn’t fully installed; install it again, then try this"
+msgstr "Isle 安装不完整，请重新安装后重试"
+
+#: prefs.js:524
+msgid ""
+"Isle isn’t running in the background. Log out and back in, or install "
+"Isle again."
+msgstr "Isle 后台服务未运行。请注销后重新登录，或重新安装 Isle。"
+
+#: src/controller.js:3111
+msgid "Isle restarted"
+msgstr "Isle 已重启"
+
+#: src/alerts.js:659
+msgid "Isle wants to run this"
+msgstr "Isle 请求运行此命令"
+
+#: src/alerts.js:659
+msgid "Isle wants to run this · asks for your password"
+msgstr "Isle 请求运行此命令，需要输入密码"
+
+#: src/controller.js:2839
+msgid ""
+"Isle was restarted (the screen locked) while this ran; it may not have "
+"happened"
+msgstr "执行期间屏幕锁定，Isle 已重启。操作可能未完成。"
+
+#: ../install.sh:41
+msgid "Isle: another install of Isle is running; try again once it is done."
+msgstr "Isle：另一个安装正在进行，请等它完成后重试。"
+
+#: src/voice.js:1033
+#, python-format
+msgid "Isle: done. %s"
+msgstr "Isle：已完成。%s"
+
+#: src/voice.js:1033
+msgid "Isle: that did not finish; run isle-setup-voice again."
+msgstr "Isle：设置未完成，请重新运行 isle-setup-voice。"
+
+#: prefs.js:1714
+#, python-format
+msgid "Isle’s %s shortcut"
+msgstr "Isle 的「%s」快捷键"
+
+#: src/alerts.js:740 src/controller.js:2712
+msgid "Isle’s service isn’t running"
+msgstr "Isle 后台服务未运行"
+
+#: prefs.js:951
+msgid "It hides by itself while the bar is too full"
+msgstr "顶栏空间不足时自动隐藏"
+
+#: src/alerts.js:447
+msgid "Join"
+msgstr "加入"
+
+#: prefs.js:369
+msgid "Joined to the top of the screen, or floating free"
+msgstr "贴合屏幕顶部，或独立悬浮"
+
+#: prefs.js:324
+msgid "Keep clipboard history"
+msgstr "保留剪贴板历史"
+
+#: prefs.js:2142
+msgid "Keep copies from this app again"
+msgstr "恢复保留此应用的剪贴板记录"
+
+#: prefs.js:277
+msgid "Keep the conversation"
+msgstr "保留对话"
+
+#: src/pages/media.js:301 src/pages/media.js:398
+msgid "Keep the lyrics open"
+msgstr "保持歌词展开"
+
+#: src/alerts.js:59
+msgid "Keyboard"
+msgstr "键盘"
+
+#: src/alerts.js:44
+msgid "Keyboard light"
+msgstr "键盘背光"
+
+#: prefs.js:352
+msgid "Known password managers are on the list from the start."
+msgstr "列表默认已包含常见的密码管理器。"
+
+#: prefs.js:271
+msgid "Language"
+msgstr "语言"
+
+#: prefs.js:418
+msgid "Large"
+msgstr "大"
+
+#: prefs.js:412
+msgid "Left"
+msgstr "左侧"
+
+#: prefs.js:295
+msgid "Let the AI read your recent notifications when you ask about them"
+msgstr "你询问通知时，允许 AI 读取近期通知"
+
+#: src/pages/media.js:398
+msgid "Let the lyrics close"
+msgstr "取消固定歌词"
+
+#: prefs.js:720
+msgid "LibreOffice is installed."
+msgstr "已安装 LibreOffice。"
+
+#: prefs.js:379
+msgid "Like a notch: the closed island never covers windows"
+msgstr "收起时位于顶栏内，避免遮挡窗口"
+
+#: src/pages/shelf.js:29
+msgid "Links"
+msgstr "链接"
+
+#: src/pages/files.js:310
+msgid "Links and files online can’t be kept"
+msgstr "无法保留网络链接和在线文件"
+
+#: prefs.js:719 src/voice.js:714
+msgid "Listening…"
+msgstr "正在聆听…"
+
+#: prefs.js:491
+msgid "Live preview"
+msgstr "实时预览"
+
+#: prefs.js:1975
+msgid "Log Out"
+msgstr "注销"
+
+#: ../install.sh:268
+msgid "Log out and back in once so GNOME Shell loads the new extension."
+msgstr "请注销后重新登录，让 GNOME Shell 加载新版扩展。"
+
+#: prefs.js:2035
+msgid "Log out and back in to finish"
+msgstr "注销并重新登录以完成更新"
+
+#: src/pages/shelf.js:342
+msgid "Log out and back in to share with a phone"
+msgstr "请注销并重新登录，再与手机共享"
+
+#: src/format.js:107 src/pages/timer.js:23
+msgid "Long break"
+msgstr "长休息"
+
+#: prefs.js:604
+msgid "Long break (minutes)"
+msgstr "长休息时长（分钟）"
+
+#: src/pages/timer.js:171
+#, python-format
+msgid "Longer %s"
+msgstr "延长%s时长"
+
+#: prefs.js:680
+msgid "Look"
+msgstr "外观"
+
+#: prefs.js:482
+msgid "Look up the playing song’s lyrics on LRCLIB"
+msgstr "在 LRCLIB 中查找正在播放的歌曲歌词"
+
+#: src/pages/lyrics.js:34
+msgid "Looking for lyrics"
+msgstr "正在查找歌词"
+
+#: src/alerts.js:130 src/pages/devices.js:178
+msgid "Low battery"
+msgstr "电量低"
+
+#: prefs.js:482
+msgid "Lyrics"
+msgstr "歌词"
+
+#: src/pages/lyrics.js:39
+msgid "Lyrics are busy right now"
+msgstr "歌词服务繁忙"
+
+#: src/pages/lyrics.js:37
+msgid "Lyrics are off"
+msgstr "歌词已关闭"
+
+#: src/pages/lyrics.js:35
+msgid "Lyrics come from LRCLIB"
+msgstr "歌词由 LRCLIB 提供"
+
+#: prefs.js:422
+msgid "Main display"
+msgstr "主显示器"
+
+#: src/pages/tasks.js:292 src/pages/tasks.js:359
+msgid "Mark as done"
+msgstr "标记为完成"
+
+#: prefs.js:775
+msgid "Match"
+msgstr "匹配"
+
+#: src/chat.js:348
+msgid "May leave it half installed"
+msgstr "可能导致安装未完成"
+
+#: src/alerts.js:42
+msgid "Microphone"
+msgstr "麦克风"
+
+#: prefs.js:478
+msgid "Minutes before an event"
+msgstr "提前提醒的分钟数"
+
+#: prefs.js:187
+msgid "Model"
+msgstr "模型"
+
+#: prefs.js:1135
+msgid "Move down: the tab goes right"
+msgstr "下移，标签页向右"
+
+#: prefs.js:1134
+msgid "Move up: the tab goes left"
+msgstr "上移，标签页向左"
+
+#: ../install.sh:185
+msgid "Moving the voice assistant to the new speech recognition"
+msgstr "正在将语音助手迁移到新的语音识别组件"
+
+#: prefs.js:987 src/expanded.js:35
+msgid "Music"
+msgstr "音乐"
+
+#: src/alerts.js:741
+msgid "Music, timer and reminders need it"
+msgstr "音乐、计时器和提醒事项需要此服务"
+
+#: src/pages/call.js:269 src/pages/media.js:336
+msgid "Mute"
+msgstr "静音"
+
+#: src/pages/call.js:338
+msgid "Mute the microphone"
+msgstr "将麦克风静音"
+
+#: src/alerts.js:42 src/pages/call.js:337 src/pages/media.js:553
+msgid "Muted"
+msgstr "已静音"
+
+#: src/chat.js:30
+msgid "Needs your password"
+msgstr "需要输入密码"
+
+#: prefs.js:471
+msgid "Network"
+msgstr "网络"
+
+#: prefs.js:351
+msgid "Never Keep Copies From"
+msgstr "排除以下应用"
+
+#: prefs.js:277
+msgid "Never more than a day; then it is deleted, with the AI's copy"
+msgstr "最长保留一天，到期会自动删除本地及 AI 保存的副本"
+
+#: src/chat.js:487
+msgid "New chat"
+msgstr "新建对话"
+
+#: src/pages/calendar.js:806
+msgid "New events go to"
+msgstr "新日程保存到"
+
+#: src/alerts.js:292
+msgid "New notification"
+msgstr "新通知"
+
+#: src/pages/tasks.js:136 src/pages/tasks.js:148
+msgid "New reminder"
+msgstr "新建提醒"
+
+#: prefs.js:481
+msgid "New song"
+msgstr "歌曲切换"
+
+#: src/pages/media.js:227
+msgid "Next"
+msgstr "下一首"
+
+#: src/pages/calendar.js:314
+msgid "Next month"
+msgstr "下个月"
+
+#: prefs.js:1336
+msgid "No City Found"
+msgstr "未找到城市"
+
+#: src/pages/devices.js:152
+msgid "No battery info"
+msgstr "无电量信息"
+
+#: src/pages/calendar.js:413
+msgid "No events"
+msgstr "暂无日程"
+
+#: src/pages/files.js:306
+msgid "No files on the shelf"
+msgstr "文件托盘为空"
+
+#: src/pages/usage.js:311
+msgid "No limits reported yet"
+msgstr "暂无额度信息"
+
+#: src/pages/lyrics.js:35
+msgid "No lyrics for this song"
+msgstr "这首歌暂无歌词"
+
+#: src/pages/notifications.js:120
+msgid "No notifications"
+msgstr "暂无通知"
+
+#: src/pages/tasks.js:252
+msgid "No reminders"
+msgstr "暂无提醒"
+
+#: prefs.js:335
+msgid "No shortcut opens it"
+msgstr "没有设置打开它的快捷键"
+
+#: src/pages/apps.js:116
+msgid "No usage yet"
+msgstr "暂无使用记录"
+
+#: prefs.js:183
+msgid "None installed"
+msgstr "未找到可用的 AI"
+
+#: prefs.js:2053
+msgid "Not checked yet"
+msgstr "尚未检查"
+
+#: prefs.js:2037
+msgid "Not checking for new versions"
+msgstr "已停用新版本检查"
+
+#: src/pages/tasks.js:372
+msgid "Not done"
+msgstr "标记为未完成"
+
+#: prefs.js:370
+msgid "Notch"
+msgstr "刘海"
+
+#: ../install.sh:273
+#, python-format
+msgid ""
+"Note: %s is not on your PATH, so run Isle's commands with it: %s/isled "
+"--doctor, %s/isle-setup-voice."
+msgstr "%s 不在 PATH 中，请使用完整路径运行 Isle 命令：%s/isled --doctor、%s/isle-setup-voice。"
+
+#: src/pages/clips.js:289
+msgid "Nothing copied yet"
+msgstr "暂无剪贴板记录"
+
+#: src/pages/clips.js:281
+msgid "Nothing found"
+msgstr "未找到结果"
+
+#: src/pages/media.js:373
+msgid "Nothing playing"
+msgstr "暂无播放"
+
+#: src/pages/lyrics.js:36
+msgid "Nothing to sing along to"
+msgstr "此曲没有演唱歌词"
+
+#: prefs.js:463 prefs.js:988 src/expanded.js:36 src/pages/notifications.js:81
+msgid "Notifications"
+msgstr "通知"
+
+#: src/alerts.js:630
+msgid "OK"
+msgstr "确定"
+
+#: prefs.js:411 prefs.js:440 prefs.js:1059 prefs.js:1642 src/alerts.js:46
+msgid "Off"
+msgstr "关闭"
+
+#: prefs.js:334
+msgid "Off while the Shelf page is off (Island → Pages)."
+msgstr "关闭文件托盘页面时停用，可在「灵动岛 → 页面」中开启。"
+
+#: src/alerts.js:156
+msgid "Offline"
+msgstr "已离线"
+
+#: src/pages/calendar.js:818
+msgid "Offline · syncs once online"
+msgstr "已离线，联网后同步"
+
+#: src/alerts.js:47
+msgid "On"
+msgstr "开启"
+
+#: prefs.js:78
+msgid "On GitHub; paste the report below in it"
+msgstr "在 GitHub 上报告问题，并粘贴下方的诊断报告"
+
+#: src/alerts.js:118
+msgid "On battery"
+msgstr "使用电池"
+
+#: prefs.js:428
+msgid "On click"
+msgstr "点击时"
+
+#: prefs.js:427
+msgid "On hover"
+msgstr "悬停时"
+
+#: src/alerts.js:579
+msgid "On the Shelf"
+msgstr "已放入文件托盘"
+
+#: src/pages/calendar.js:970
+msgid "On this computer"
+msgstr "在这台电脑上"
+
+#: src/voice.js:419
+msgid "One moment…"
+msgstr "请稍候…"
+
+#: src/pages/shelf.js:172
+#, python-format
+msgid "Only %s"
+msgstr "仅显示%s"
+
+#: src/pages/shelf.js:541
+#, python-format
+msgid "Only %s more fit"
+msgstr "还可添加 %s 项"
+
+#: src/pages/files.js:310 src/pages/shelf.js:537
+msgid "Only files on this computer"
+msgstr "仅支持本机文件"
+
+#: src/pages/phone.js:34
+msgid "Only share on a network you trust"
+msgstr "请仅在信任的网络上共享"
+
+#: prefs.js:426 src/pages/call.js:270
+msgid "Open"
+msgstr "展开"
+
+#: src/pages/phone.js:33
+msgid "Open Wi-Fi: others nearby could see the files · try a hotspot"
+msgstr "附近的人可能看到你在开放 Wi-Fi 上共享的文件，建议使用手机热点"
+
+#: prefs.js:1004
+msgid ""
+"Open a page from anywhere; the same shortcut closes it. Super+V opens the"
+" Shelf’s clipboard or the Calendar: press it on either. In the open "
+"island, Ctrl+Tab and Ctrl+1–9 change pages."
+msgstr ""
+"可在任何地方用快捷键打开页面，再按一次即可关闭。可为文件托盘的剪贴板或日历设置 Super+V。展开后可用 Ctrl+Tab 和 Ctrl+1–9"
+" 切换页面。"
+
+#: src/voice.js:1051
+#, python-format
+msgid "Open a terminal, type “%s” to sign in, then ask again."
+msgstr "打开终端，输入「%s」登录，然后重试。"
+
+#: src/voice.js:1050
+msgid "Open a terminal, type “pi”, then “/login” to sign in, then ask again."
+msgstr "打开终端，输入「pi」，再输入「/login」登录，然后重试。"
+
+#: src/alerts.js:629
+msgid "Open terminal"
+msgstr "打开终端"
+
+#: src/alerts.js:757
+msgid "Open the island to read it"
+msgstr "展开灵动岛查看通知"
+
+#: src/alerts.js:757
+msgid "Open the island to read them"
+msgstr "展开灵动岛查看通知"
+
+#: prefs.js:173
+msgid "Opens the assistant and listens"
+msgstr "打开助手并开始聆听"
+
+#: prefs.js:468
+msgid "Over full-screen apps"
+msgstr "在全屏应用上显示"
+
+#: prefs.js:1091
+msgid "Pages"
+msgstr "页面"
+
+#: src/pages/timer.js:291 src/pages/timer.js:305
+msgid "Pause"
+msgstr "暂停"
+
+#: src/pages/shelf.js:25
+msgid "Phone"
+msgstr "手机"
+
+#: src/pages/phone.js:232
+msgid "Phone can’t connect? ufw may block it"
+msgstr "手机连不上？可能被 ufw 防火墙拦截"
+
+#: src/alerts.js:540
+msgid "Phone sharing stopped"
+msgstr "手机分享已停止"
+
+#: ../scripts/setup-voice.sh:112
+#, python-format
+msgid "Pick '%s' in Settings → Assistant → Speech recognition so Isle uses it."
+msgstr "请在「设置 → 助手 → 语音识别」中选择「%s」。"
+
+#: prefs.js:371
+msgid "Pill"
+msgstr "胶囊"
+
+#: src/pages/clips.js:565
+msgid "Pin"
+msgstr "固定"
+
+#: src/pages/clips.js:574
+msgid "Pinned"
+msgstr "已固定"
+
+#: prefs.js:343
+msgid "Pinned items are kept"
+msgstr "已固定的项目会保留"
+
+#: src/pages/clips.js:569
+msgid "Pins full · unpin one"
+msgstr "固定项目已满，请先取消固定一项"
+
+#: src/pages/media.js:223
+msgid "Play or pause"
+msgstr "播放或暂停"
+
+#: src/alerts.js:131
+msgid "Plug in your charger soon"
+msgstr "请尽快接通电源"
+
+#: prefs.js:470
+msgid "Plugged in, unplugged, full and low"
+msgstr "接通电源、断开电源、充满或低电量时提醒"
+
+#: prefs.js:507
+msgid "Pomodoro"
+msgstr "番茄钟"
+
+#: prefs.js:989
+msgid "Pomodoro focus sessions and breaks"
+msgstr "番茄钟专注和休息"
+
+#: src/voice.js:1030
+#, python-format
+msgid "Press %s and speak."
+msgstr "按 %s 后说话。"
+
+#: src/controller.js:2768
+#, python-format
+msgid "Press %s to ask again."
+msgstr "按 %s 再问一次。"
+
+#: ../install.sh:266
+msgid "Press Alt+F2, type 'r' and Enter to restart GNOME Shell."
+msgstr "按 Alt+F2，输入 r 后回车以重启 GNOME Shell。"
+
+#: src/voice.js:1030
+msgid "Press the mic in the island and speak."
+msgstr "点击灵动岛里的麦克风后说话。"
+
+#: prefs.js:1729
+msgid "Press the new shortcut"
+msgstr "按下新的快捷键"
+
+#: prefs.js:167
+msgid ""
+"Press the shortcut (or the ✦ in the open island) and speak. Speech is "
+"recognised on this computer (Set up downloads it, once); the request goes"
+" to the AI you pick, with your own sign-in and plan."
+msgstr "按快捷键或点击展开的灵动岛里的 ✦，然后说话。语音在本机识别，首次需要下载模型。识别后的请求会发给你选定的 AI，并使用你的账号和套餐。"
+
+#: src/pages/media.js:225
+msgid "Previous"
+msgstr "上一首"
+
+#: src/pages/calendar.js:312
+msgid "Previous month"
+msgstr "上个月"
+
+#: prefs.js:420
+msgid "Privacy indicators"
+msgstr "隐私指示灯"
+
+#: prefs.js:1144
+msgid "Put the tabs back in Isle’s own order"
+msgstr "恢复 Isle 默认的标签页顺序"
+
+#: prefs.js:294
+msgid "Read notifications"
+msgstr "读取通知"
+
+#: src/alerts.js:216
+msgid "Ready for another focus session?"
+msgstr "准备开始下一轮专注了吗？"
+
+#: src/format.js:104
+msgid "Ready to focus"
+msgstr "准备专注"
+
+#: ../install.sh:251
+msgid "Recommended (Isle changed nothing here)"
+msgstr "扩展兼容性建议"
+
+#: src/alerts.js:799
+msgid "Recording screen"
+msgstr "正在录屏"
+
+#: src/pages/files.js:314 src/pages/shelf.js:543
+msgid "Release to add it"
+msgstr "松开鼠标即可添加"
+
+#: src/alerts.js:406
+msgid "Reminder"
+msgstr "提醒事项"
+
+#: prefs.js:990 src/expanded.js:38 src/pages/tasks.js:131
+msgid "Reminders"
+msgstr "提醒事项"
+
+#: prefs.js:1732 src/pages/clips.js:603
+msgid "Remove"
+msgstr "移除"
+
+#: src/pages/calendar.js:1036
+msgid "Remove event"
+msgstr "删除日程"
+
+#: src/pages/files.js:336
+msgid "Remove from the shelf"
+msgstr "从文件托盘移除"
+
+#: prefs.js:1633 prefs.js:1634
+msgid "Remove the shortcut"
+msgstr "移除快捷键"
+
+#: prefs.js:1258
+msgid "Remove this city"
+msgstr "移除此城市"
+
+#: src/chat.js:28
+msgid "Removes files or apps"
+msgstr "删除文件或应用"
+
+#: ../install.sh:151
+#, python-format
+msgid "Replaced the install under the old id %s."
+msgstr "已替换使用旧 ID %s 的安装。"
+
+#: prefs.js:78
+msgid "Report a problem"
+msgstr "报告问题"
+
+#: prefs.js:92
+msgid "Reset"
+msgstr "重置"
+
+#: prefs.js:1143
+msgid "Reset Order"
+msgstr "重置顺序"
+
+#: prefs.js:90
+msgid "Reset all of Isle’s settings?"
+msgstr "要重置 Isle 的所有设置吗？"
+
+#: prefs.js:87
+msgid "Reset all settings"
+msgstr "重置所有设置"
+
+#: src/pages/timer.js:78
+msgid "Reset the timer"
+msgstr "重置计时器"
+
+#: prefs.js:431
+msgid "Rest before opening"
+msgstr "展开延迟"
+
+#: src/alerts.js:743
+msgid "Restart"
+msgstr "重启"
+
+#: src/controller.js:2840
+msgid "Results"
+msgstr "结果"
+
+#: src/pages/timer.js:305
+msgid "Resume"
+msgstr "继续"
+
+#: prefs.js:413
+msgid "Right"
+msgstr "右侧"
+
+#: src/alerts.js:665 src/chat.js:309
+msgid "Run"
+msgstr "运行"
+
+#: ../install.sh:36
+msgid "Run this as yourself, without sudo: Isle installs to your own home folder."
+msgstr "请以当前用户直接运行。Isle 安装在个人目录中，无需 sudo。"
+
+#: src/alerts.js:665
+msgid "Running"
+msgstr "运行中"
+
+#: src/chat.js:336
+#, python-format
+msgid "Running · %s"
+msgstr "运行中 · %s"
+
+#: src/chat.js:29
+msgid "Runs a script from the web"
+msgstr "运行网络上的脚本"
+
+#: src/pages/phone.js:37
+msgid "Same Wi-Fi as this computer, or its hotspot"
+msgstr "连接与本机相同的 Wi-Fi 或热点"
+
+#: prefs.js:1250
+msgid "Same time as here"
+msgstr "与本地时间相同"
+
+#: src/pages/files.js:342
+msgid "Save to Downloads"
+msgstr "保存到「下载」"
+
+#: src/pages/calendar.js:818
+msgid "Saved in Isle instead"
+msgstr "已改为保存到 Isle"
+
+#: src/alerts.js:515
+msgid "Saved to Downloads"
+msgstr "已保存到「下载」"
+
+#: src/pages/phone.js:37
+msgid "Scan the code with the camera"
+msgstr "用相机扫描二维码"
+
+#: src/pages/phone.js:113
+msgid "Scan with your phone"
+msgstr "用手机扫描"
+
+#: src/pages/shelf.js:181
+msgid "Search"
+msgstr "搜索"
+
+#: prefs.js:1314 prefs.js:1336
+msgid "Search for a City"
+msgstr "搜索城市"
+
+#: prefs.js:1309
+msgid "Search for a city"
+msgstr "搜索城市"
+
+#: src/pages/shelf.js:203
+msgid "Search the clipboard history"
+msgstr "搜索剪贴板历史"
+
+#: prefs.js:719
+msgid "Searching the web…"
+msgstr "正在搜索网页…"
+
+#: prefs.js:446
+msgid "Seconds without the pointer on the island"
+msgstr "指针离开灵动岛后的等待时间，单位为秒"
+
+#: prefs.js:492
+msgid "See yourself and whoever you call, live in the open island"
+msgstr "展开灵动岛可实时预览自己和通话对象"
+
+#: prefs.js:905
+msgid "See-through glass"
+msgstr "透明玻璃"
+
+#: src/voice.js:653
+msgid "Send"
+msgstr "发送"
+
+#: prefs.js:293
+msgid ""
+"Send the text you have selected, so the AI can work on it; never from "
+"terminals or password managers"
+msgstr "将选中的文本发给 AI 处理，终端和密码管理器中的文本除外"
+
+#: prefs.js:605
+msgid "Sessions before a long break"
+msgstr "长休息前的专注轮数"
+
+#: src/pages/timer.js
+#, python-format
+msgid "Set %s minutes"
+msgstr "设置%s时长（分钟）"
+
+#: src/voice.js:295
+msgid "Set up"
+msgstr "设置语音识别"
+
+#: ../scripts/setup-voice.sh:50
+msgid ""
+"Sets up speech recognition for Isle: downloads the whisper.cpp model and "
+"verifies its SHA-256."
+msgstr "为 Isle 设置语音识别，下载 whisper.cpp 模型并验证其 SHA-256 校验值。"
+
+#: ../install.sh:212
+msgid "Setting up the top bar"
+msgstr "正在设置顶栏"
+
+#: prefs.js:86 src/alerts.js:682 src/expanded.js:210
+msgid "Settings"
+msgstr "设置"
+
+#: ../scripts/setup-voice.sh:71
+#, python-format
+msgid "Settings name an unknown model '%s'; give one: isle-setup-voice small"
+msgstr "设置中指定了未知模型「%s」。请指定模型，例如 isle-setup-voice small。"
+
+#: ../scripts/setup-voice.sh:110
+#, python-format
+msgid "Settings → Assistant → Speech recognition is now '%s'."
+msgstr "「设置 → 助手 → 语音识别」已设为「%s」。"
+
+#: prefs.js:369 prefs.js:737
+msgid "Shape"
+msgstr "形状"
+
+#: prefs.js:121 prefs.js:122
+msgid "Share of a limit, in %"
+msgstr "占额度上限的百分比"
+
+#: src/pages/shelf.js:230
+msgid "Share the Shelf with your phone"
+msgstr "与手机共享文件托盘"
+
+#: prefs.js:991 src/expanded.js:39
+msgid "Shelf"
+msgstr "文件托盘"
+
+#: src/format.js:106
+msgid "Short break"
+msgstr "短休息"
+
+#: prefs.js:603
+msgid "Short break (minutes)"
+msgstr "短休息时长（分钟）"
+
+#: prefs.js:173 prefs.js:1723
+msgid "Shortcut"
+msgstr "快捷键"
+
+#: prefs.js:1003
+msgid "Shortcuts"
+msgstr "快捷键"
+
+#: src/pages/timer.js:170
+#, python-format
+msgid "Shorter %s"
+msgstr "缩短%s时长"
+
+#: src/alerts.js:488
+msgid "Show"
+msgstr "查看"
+
+#: prefs.js:118
+msgid "Show AI usage"
+msgstr "显示 AI 用量"
+
+#: src/pages/media.js:266
+msgid "Show lyrics"
+msgstr "显示歌词"
+
+#: src/voice.js:268
+msgid "Show the conversation"
+msgstr "显示对话"
+
+#: prefs.js:406
+msgid "Show the date"
+msgstr "显示日期"
+
+#: prefs.js:467
+msgid "Show them in the island instead of the centre of the screen"
+msgstr "在灵动岛中显示音量和亮度提示"
+
+#: prefs.js:1219
+msgid "Show world clocks"
+msgstr "显示世界时钟"
+
+#: src/voice.js:293
+msgid "Sign in"
+msgstr "登录"
+
+#: prefs.js:116
+msgid "Sign in to Claude Code, Codex or Grok and your plan shows up here."
+msgstr "登录 Claude Code、Codex 或 Grok 后，套餐会显示在这里。"
+
+#: prefs.js:1116
+msgid "Sign in to Claude Code, Codex or Grok to see your plan"
+msgstr "登录 Claude Code、Codex 或 Grok 后查看套餐"
+
+#: prefs.js:1564
+msgid "Signed in with Claude Code"
+msgstr "已登录 Claude Code"
+
+#: prefs.js:1568
+msgid "Signed in with Codex"
+msgstr "已登录 Codex"
+
+#: prefs.js:1570
+msgid "Signed in with Grok"
+msgstr "已登录 Grok"
+
+#: prefs.js:503
+msgid "Silence notifications during focus sessions, and restore them afterwards"
+msgstr "专注期间静音通知，结束后恢复"
+
+#: prefs.js:416
+msgid "Size"
+msgstr "尺寸"
+
+#: prefs.js:377
+msgid ""
+"Smaller text and spacing in the top bar; slimmer too with the island "
+"below it"
+msgstr "缩小顶栏文字和间距。灵动岛位于顶栏下方时，顶栏也会变薄。"
+
+#: src/alerts.js:776 src/voice.js:425
+msgid "Something went wrong"
+msgstr "出了点问题"
+
+#: prefs.js:483
+msgid "Sounds"
+msgstr "提示音"
+
+#: prefs.js:383
+msgid "Space below the island"
+msgstr "灵动岛底部留白"
+
+#: src/voice.js:246
+msgid "Speak"
+msgstr "说话"
+
+#: src/voice.js:653
+msgid "Speak instead"
+msgstr "改用语音输入"
+
+#: prefs.js:265
+msgid "Speech recognition"
+msgstr "语音识别"
+
+#: prefs.js:417
+msgid "Standard"
+msgstr "标准"
+
+#: src/pages/timer.js:83 src/pages/timer.js:291 src/pages/timer.js:305
+#: src/pages/timer.js:345
+msgid "Start"
+msgstr "开始"
+
+#: src/alerts.js:206
+msgid "Start break"
+msgstr "开始休息"
+
+#: prefs.js:606
+msgid "Start breaks automatically"
+msgstr "自动开始休息"
+
+#: src/alerts.js:218
+msgid "Start focus"
+msgstr "开始专注"
+
+#: prefs.js:607
+msgid "Start focus automatically"
+msgstr "自动开始专注"
+
+#: src/pages/timer.js:86
+msgid "Start or pause"
+msgstr "开始或暂停"
+
+#: src/pages/media.js:375
+msgid "Start playback in a music player or browser"
+msgstr "请在音乐客户端或浏览器中开始播放"
+
+#: src/voice.js:272
+msgid "Started a new chat"
+msgstr "已开始新对话"
+
+#: ../install.sh:165
+msgid "Starting isled"
+msgstr "正在启动 isled"
+
+#: src/voice.js:922
+#, python-format
+msgid "Still working · %s"
+msgstr "仍在处理 · %s"
+
+#: src/alerts.js:802 src/chat.js:307 src/pages/shelf.js:238 src/voice.js:361
+msgid "Stop"
+msgstr "停止"
+
+#: src/chat.js:418
+msgid "Stop anyway"
+msgstr "仍要停止"
+
+#: src/alerts.js:800
+msgid "Stop it from the red dot in the island"
+msgstr "点击灵动岛中的红点可停止"
+
+#: src/expanded.js:181
+msgid "Stop recording"
+msgstr "停止录音"
+
+#: src/chat.js:36
+msgid "Stopped"
+msgstr "已停止"
+
+#: prefs.js:1073
+msgid "Super+V opens it too"
+msgstr "也可用 Super+V 打开"
+
+#: src/pages/media.js:536
+#, python-format
+msgid "Switch to %s"
+msgstr "切换到 %s"
+
+#: src/pages/phone.js:309
+#, python-format
+msgid "Take %s off"
+msgstr "断开 %s 的连接"
+
+#: src/alerts.js:204
+msgid "Take a break when you’re ready"
+msgstr "准备好后，可以休息一下"
+
+#: src/pages/shelf.js:28
+msgid "Text"
+msgstr "文本"
+
+#: src/pages/clips.js:290
+msgid "Text, links, images and files you copy show up here"
+msgstr "复制的文字、链接、图片和文件会显示在这里"
+
+#: prefs.js:325
+msgid ""
+"Text, links, images and files you copy. Passwords from password managers "
+"are never kept."
+msgstr "保留复制的文本、链接、图片和文件。密码管理器中的密码不会保存。"
+
+#: ../install.sh:187
+msgid ""
+"That did not finish; run isle-setup-voice later (the voice assistant "
+"needs it)."
+msgstr "语音识别设置未完成，稍后请运行 isle-setup-voice。"
+
+#: prefs.js:1865
+msgid "That version isn’t on GitHub yet; try again later"
+msgstr "GitHub 上还没有这个版本，请稍后重试"
+
+#: prefs.js:118
+msgid "The Usage page and its warnings"
+msgstr "显示用量页面及额度提醒"
+
+#: prefs.js:287
+msgid ""
+"The assistant starts afresh; what was said is deleted here and from the "
+"AI's own history on this computer."
+msgstr "助手会开始新对话。本机的对话及 AI 的本地历史记录将被删除。"
+
+#: prefs.js:490
+msgid "The call’s length, mute and a way back to it"
+msgstr "显示通话时长，提供静音和返回通话按钮"
+
+#: prefs.js:406
+msgid "The day beside the time on the closed island, as “Fri 6”"
+msgstr "收起时在时间旁显示星期和日期"
+
+#: prefs.js:1868
+msgid "The disk is full; free some space and try again"
+msgstr "磁盘空间不足，请释放空间后重试"
+
+#: prefs.js:1866
+msgid "The download didn’t come through whole; try again"
+msgstr "下载不完整，请重试"
+
+#: prefs.js:905
+msgid "The island blends into the bar"
+msgstr "灵动岛与顶栏融为一体"
+
+#: prefs.js:1175
+msgid "The island keeps at least one page"
+msgstr "灵动岛至少需要保留一个页面"
+
+#: prefs.js:271
+msgid "The language you speak"
+msgstr "语音识别使用的语言"
+
+#: prefs.js:774
+msgid "The light along the island's edge"
+msgstr "灵动岛边缘的发光效果"
+
+#: prefs.js:988
+msgid "The list to look back at, and its unread dot; alerts show either way"
+msgstr "显示通知列表和未读圆点。关闭此页后仍会显示提醒。"
+
+#: prefs.js:992
+msgid "The month, its events and world clocks"
+msgstr "月历、日程和世界时钟"
+
+#: src/alerts.js:157
+msgid "The network connection was lost"
+msgstr "网络连接已断开"
+
+#: ../scripts/setup-voice.sh:136
+msgid "The older Python speech setup is no longer needed"
+msgstr "旧版基于 Python 的语音识别环境已无需保留"
+
+#: prefs.js:416
+msgid "The open island, every page"
+msgstr "适用于灵动岛展开后的所有页面"
+
+#: prefs.js:1092
+msgid ""
+"The open island’s tabs, top here is left there. Use the arrows to reorder"
+" them and the switches to hide the ones you don’t use."
+msgstr "这里的顺序对应展开后的标签页顺序。点击箭头调整顺序，关闭开关可隐藏不用的页面。"
+
+#: prefs.js:987
+msgid "The player and lyrics, and the song in the closed island"
+msgstr "显示播放器和歌词，收起时显示歌曲"
+
+#: src/pages/files.js:312
+msgid "The shelf holds six at a time"
+msgstr "文件托盘最多保存 6 项"
+
+#: prefs.js:172
+msgid "The shortcut and the ✦ in the open island. Off: Isle never asks an AI"
+msgstr "启用快捷键和灵动岛里的 ✦。关闭后，Isle 不会向 AI 发送请求。"
+
+#: prefs.js:1217
+msgid ""
+"The time in other cities on the Calendar page. The same list as GNOME’s "
+"calendar menu and Clocks app."
+msgstr "在日历页显示其他城市的时间，与 GNOME 的日历菜单和「时钟」应用使用同一列表。"
+
+#: prefs.js:523
+msgid "The timer settings aren’t available right now"
+msgstr "计时器设置暂时不可用"
+
+#: prefs.js:1882
+msgid "The update didn’t finish; try again"
+msgstr "更新未完成，请重试"
+
+#: prefs.js:1875
+msgid "The update didn’t start; try again"
+msgstr "更新未能启动，请重试"
+
+#: prefs.js:1119
+msgid "The ✦ in the open island and its shortcut"
+msgstr "显示灵动岛里的 ✦ 并启用助手快捷键"
+
+#: src/pages/files.js:314
+msgid "Then drag it into any app, or click to copy it"
+msgstr "添加后，可拖到任意应用或点击复制"
+
+#: prefs.js:1872
+msgid "There’s no ready-made Isle for this computer; build it from source instead"
+msgstr "没有适用于这台电脑的预编译包，请从源码构建"
+
+#: src/voice.js:422
+msgid "Thinking…"
+msgstr "正在思考…"
+
+#: src/alerts.js:541
+msgid "This computer’s network changed"
+msgstr "此电脑的网络已变更"
+
+#: src/pages/phone.js:32
+msgid "This network looks public · use your phone’s hotspot"
+msgstr "当前网络疑似公共网络，建议使用手机热点"
+
+#: prefs.js:1867
+msgid "This version of Isle doesn’t support this GNOME yet; nothing was changed"
+msgstr "这个 Isle 版本暂不支持当前的 GNOME，安装未作改动"
+
+#: prefs.js:947
+msgid "Time"
+msgstr "时间"
+
+#: prefs.js:399
+msgid "Time format"
+msgstr "时间格式"
+
+#: src/pages/apps.js:117
+msgid "Time in the app in front shows up here"
+msgstr "前台应用的使用时长会显示在这里"
+
+#: prefs.js:1106
+msgid "Time spent in each app, kept on this computer for 30 days"
+msgstr "记录各应用的使用时长，在本机保留 30 天"
+
+#: prefs.js:501 prefs.js:989 src/expanded.js:37
+msgid "Timer"
+msgstr "计时器"
+
+#: ../scripts/setup-voice.sh:156
+msgid "To delete them later: isle-setup-voice --remove-old"
+msgstr "如需稍后删除，请运行 isle-setup-voice --remove-old。"
+
+#: src/pages/apps.js:19 src/pages/calendar.js:353 src/pages/calendar.js:805
+msgid "Today"
+msgstr "今天"
+
+#: src/voice.js:59
+msgid "Today’s plan"
+msgstr "今天的日程"
+
+#: src/pages/calendar.js:805
+msgid "Tomorrow"
+msgstr "明天"
+
+#: src/pages/files.js:312
+msgid "Too many files"
+msgstr "文件太多"
+
+#: prefs.js:889
+msgid "Top bar"
+msgstr "顶栏"
+
+#: prefs.js:950
+msgid "Top bar clock shows"
+msgstr "顶栏时钟显示"
+
+#: src/alerts.js:46
+msgid "Touchpad"
+msgstr "触摸板"
+
+#: prefs.js:2028
+msgid "Try Again"
+msgstr "重试"
+
+#: prefs.js:1337
+msgid "Try another spelling, or a bigger city nearby"
+msgstr "试试其他拼写，或搜索附近的大城市"
+
+#: src/pages/clips.js:282
+msgid "Try other words or another filter"
+msgstr "请换个关键词或筛选条件"
+
+#: src/pages/lyrics.js:39
+msgid "Trying again in a moment"
+msgstr "即将重试"
+
+msgid "Turn clipboard history on in Isle’s settings"
+msgstr "请在 Isle 设置中开启剪贴板历史"
+
+#: prefs.js:2038
+msgid "Turn it on below to hear when one is out"
+msgstr "开启下方的选项以接收新版本提醒"
+
+#: prefs.js:405
+msgid "Turn off for an empty island; the open island still shows the time"
+msgstr "关闭后，收起时隐藏时间，展开时仍显示"
+
+#: prefs.js:374
+msgid "Turn off to let your theme or another extension style the bar"
+msgstr "关闭后，顶栏样式由主题或其他扩展控制"
+
+#: src/pages/lyrics.js:37
+msgid "Turn them on in Isle’s settings"
+msgstr "请在 Isle 设置中开启歌词"
+
+#: ../install.sh:208
+msgid "Turned extensions on (they were all switched off in the Extensions app)."
+msgstr "已在「扩展」应用中启用扩展总开关。"
+
+#: prefs.js:1315 prefs.js:1337
+msgid "Type a city’s name, like Tokyo or New York"
+msgstr "输入城市名，例如东京或纽约"
+
+#: src/voice.js:359
+msgid "Type instead"
+msgstr "改用键盘输入"
+
+#: prefs.js:1219
+msgid "Under the day’s events; click them for more"
+msgstr "显示在当日日程下方，点击查看更多"
+
+#: src/voice.js:273
+msgid "Undo"
+msgstr "撤销"
+
+#: src/pages/call.js:338
+msgid "Unmute the microphone"
+msgstr "取消麦克风静音"
+
+#: src/pages/clips.js:565
+msgid "Unpin"
+msgstr "取消固定"
+
+#: prefs.js:278
+msgid "Until midnight"
+msgstr "保留至午夜"
+
+#: src/pages/calendar.js:603
+msgid "Untitled"
+msgstr "无标题"
+
+#: prefs.js:1974 prefs.js:2046 src/alerts.js:729
+msgid "Update"
+msgstr "更新"
+
+#: src/alerts.js:727
+msgid "Update in a click; your things stay"
+msgstr "可一键更新，你的数据会保留"
+
+#: prefs.js:2042
+msgid "Update it the way you installed it from the AUR, then log out and back in"
+msgstr "请通过原有的 AUR 安装方式更新，然后注销并重新登录"
+
+#: src/alerts.js:727
+msgid "Update its package to get it"
+msgstr "请通过软件包更新"
+
+#: src/pages/usage.js:363
+#, python-format
+msgid "Updated %s"
+msgstr "更新于%s"
+
+#: src/expanded.js:43
+msgid "Usage"
+msgstr "用量"
+
+#: ../scripts/setup-voice.sh:5 ../scripts/setup-voice.sh:51
+msgid "Usage: isle-setup-voice [tiny|base|small|medium] [--remove-old]"
+msgstr "用法：isle-setup-voice [tiny|base|small|medium] [--remove-old]"
+
+#: prefs.js:292
+msgid "Use selected text"
+msgstr "使用选中的文本"
+
+#: ../scripts/setup-voice.sh:52
+msgid "Uses the model you name, or the model in Settings → Assistant, or small."
+msgstr "优先使用指定的模型，其次使用「设置 → 助手」中选中的模型，默认使用 small。"
+
+#: src/alerts.js:700
+#, python-format
+msgid "Using %s for now"
+msgstr "暂时使用 %s"
+
+#: src/pages/call.js:329
+msgid "Video call"
+msgstr "视频通话"
+
+#: prefs.js:166
+msgid "Voice Assistant"
+msgstr "语音助手"
+
+#: src/pages/call.js:329
+msgid "Voice call"
+msgstr "语音通话"
+
+#: src/alerts.js:41
+msgid "Volume"
+msgstr "音量"
+
+#: prefs.js:467
+msgid "Volume and brightness"
+msgstr "音量和亮度"
+
+#: src/pages/media.js:267 src/pages/media.js:319
+msgid "Volume and output"
+msgstr "音量和输出设备"
+
+#: ../install.sh:94
+msgid ""
+"Vulkan headers or glslc not found: speech recognition will use the "
+"processor only."
+msgstr "缺少 Vulkan 头文件或 glslc，语音识别将只使用 CPU。"
+
+#: prefs.js:122
+msgid "Warn again at"
+msgstr "再次提醒阈值"
+
+#: prefs.js:121
+msgid "Warn at"
+msgstr "提醒阈值"
+
+#: prefs.js:77
+msgid "Website"
+msgstr "网站"
+
+#: src/alerts.js:367
+msgid "Week"
+msgstr "周"
+
+#: src/alerts.js:367
+msgid "Weekly"
+msgstr "每周"
+
+#: prefs.js:488
+msgid "WhatsApp, Telegram, Meet and other calls, in any app or browser."
+msgstr "支持 WhatsApp、Telegram、Meet 等应用或浏览器通话。"
+
+#: prefs.js:79
+msgid ""
+"What’s installed, what works, and recent activity, ready to paste into a "
+"report"
+msgstr "包含安装组件、运行状态和近期活动，可粘贴到问题报告"
+
+#: src/voice.js:59
+msgid "What’s on my calendar today?"
+msgstr "今天有什么日程？"
+
+#: prefs.js:475
+msgid "When it turns on or off"
+msgstr "开启或关闭时提醒"
+
+#: prefs.js:471
+msgid "When the connection drops"
+msgstr "网络断开时提醒"
+
+#: prefs.js:502
+msgid "While Focusing"
+msgstr "专注期间"
+
+#: prefs.js:969
+msgid ""
+"While a window reaches the top bar, maximized or tiled, the bar turns "
+"black"
+msgstr "窗口最大化或平铺并贴近顶栏时，顶栏变黑"
+
+#: src/alerts.js:54
+msgid "Wi-Fi"
+msgstr "Wi-Fi"
+
+#: prefs.js:1730
+msgid "With Super, Ctrl or Alt"
+msgstr "请组合使用 Super、Ctrl 或 Alt"
+
+#: prefs.js:421
+msgid "With more than one display, where the island is"
+msgstr "多个显示器时灵动岛的位置"
+
+#: prefs.js:1198
+msgid ""
+"With the Apps page on, the app in front is timed. Five minutes without "
+"input pause it, unless a video keeps the screen awake."
+msgstr "开启「应用」页后，Isle 会记录前台应用的使用时长。五分钟无操作后暂停计时，视频使屏幕保持唤醒时除外。"
+
+#: prefs.js:442
+msgid "With the top bar"
+msgstr "与顶栏一起"
+
+#: src/pages/timer.js:33
+msgid "Work"
+msgstr "专注"
+
+#: prefs.js:1216 src/pages/calendar.js:807
+msgid "World Clocks"
+msgstr "世界时钟"
+
+#: src/pages/calendar.js:347 src/pages/calendar.js:437
+msgid "World clocks"
+msgstr "世界时钟"
+
+#: src/pages/calendar.js:805
+msgid "Yesterday"
+msgstr "昨天"
+
+#: src/alerts.js:143
+msgid "You can unplug your charger"
+msgstr "可以拔下电源"
+
+#: src/alerts.js:471
+msgid "Your AI"
+msgstr "你的 AI"
+
+#: prefs.js:1111
+msgid "Your AI plans’ limits, and warnings as one nears its end"
+msgstr "显示 AI 套餐额度，并在接近上限时提醒"
+
+#: src/pages/clips.js:278
+msgid "Your clipboard shows again once sharing stops"
+msgstr "停止共享后重新显示剪贴板"
+
+#: prefs.js:2048
+msgid "Your tasks, events and settings stay"
+msgstr "你的任务、日程和设置会保留"
+
+#: prefs.js:990
+msgid "Your to-do list"
+msgstr "待办清单"
+
+#: src/pages/notifications.js:121
+msgid "You’re all caught up"
+msgstr "你已查看所有通知"
+
+#: prefs.js:2051
+msgid "You’re up to date"
+msgstr "已是最新版本"
+
+#: prefs.js:1675
+msgid "a GNOME Shell shortcut"
+msgstr "GNOME Shell 快捷键"
+
+#: prefs.js:1677
+msgid "a GNOME shortcut"
+msgstr "GNOME 快捷键"
+
+#: prefs.js:1678
+msgid "a GNOME system shortcut"
+msgstr "GNOME 系统快捷键"
+
+#: prefs.js:1674
+msgid "a GNOME window shortcut"
+msgstr "GNOME 窗口快捷键"
+
+#: ../install.sh:104
+msgid ""
+"cmake or a C++ compiler not found: skipping isle-whisper (the voice "
+"assistant's speech recognition)."
+msgstr "缺少 CMake 或 C++ 编译器，将跳过语音识别组件 isle-whisper。"
+
+#: ../scripts/setup-voice.sh:94
+#, python-format
+msgid "could not download %s; check the internet connection and try again."
+msgstr "无法下载 %s，请检查网络连接后重试。"
+
+#: src/pages/calendar.js:818
+#, python-format
+msgid "e.g. Dinner %s"
+msgstr "例如：晚餐 %s"
+
+#: src/pages/apps.js:21
+msgid "in 30 days"
+msgstr "近 30 天"
+
+#: src/pages/apps.js:20
+msgid "in 7 days"
+msgstr "近 7 天"
+
+#: ../install.sh:82
+msgid ""
+"isle-shelf did not build (it needs Rust 1.92 or newer: 'rustup update'); "
+"skipping drag and drop on the shelf."
+msgstr "isle-shelf 构建失败（需要 Rust 1.92 或更高版本，可运行 rustup update）。安装将跳过文件托盘的拖放功能。"
+
+#: ../install.sh:101
+msgid ""
+"isle-whisper did not build (it needs libclang too: 'sudo apt install "
+"libclang-dev'); the voice assistant needs it."
+msgstr ""
+"语音助手所需的 isle-whisper 构建失败。请确认已安装 libclang，可运行 sudo apt install libclang-"
+"dev。"
+
+#: ../scripts/setup-voice.sh:125
+msgid ""
+"isle-whisper, which runs the model, is not installed: install Isle again "
+"(from source it needs cmake and a C++ compiler; see the README)."
+msgstr "未安装用于运行模型的 isle-whisper，请重新安装 Isle。从源码构建需要 CMake 和 C++ 编译器，详见 README。"
+
+#: ../install.sh:172
+msgid ""
+"isled could not be set to start with your session ('systemctl --user "
+"enable isled' says why); it still starts once the island calls it."
+msgstr "无法将 isled 设为随会话启动，可运行 systemctl --user enable isled 查看原因。灵动岛调用时仍会启动该服务。"
+
+#: ../install.sh:175
+msgid ""
+"isled did not start; see 'journalctl --user -u isled' (the island still "
+"works without it, minus its services)."
+msgstr "isled 未启动，可运行 journalctl --user -u isled 查看原因。灵动岛仍能显示，依赖后台服务的功能暂不可用。"
+
+#: ../scripts/setup-voice.sh:166
+msgid "isled is not installed yet; install Isle, then run isled --doctor."
+msgstr "尚未安装 isled。请先安装 Isle，再运行 isled --doctor。"
+
+#: prefs.js:229
+msgid "not available now"
+msgstr "当前不可用"
+
+#: prefs.js:229
+msgid "not on your plan"
+msgstr "套餐不包含此模型"
+
+#: ../install.sh:50 ../install.sh:125 ../install.sh:190
+#: ../scripts/setup-voice.sh:55 ../scripts/setup-voice.sh:71
+#: ../scripts/setup-voice.sh:110 src/alerts.js:22 src/alerts.js:226
+#: src/alerts.js:229 src/alerts.js:230 src/alerts.js:231 src/alerts.js:232
+#: src/alerts.js:250 src/alerts.js:252 src/alerts.js:274 src/alerts.js:277
+#: src/alerts.js:345 src/alerts.js:346 src/alerts.js:349 src/alerts.js:376
+#: src/alerts.js:434 src/alerts.js:442 src/alerts.js:452 src/alerts.js:466
+#: src/alerts.js:690 src/alerts.js:701 src/format.js:35 src/format.js:57
+#: src/format.js:62 src/format.js:77 src/format.js:79 src/format.js:80
+#: src/format.js:82 src/format.js:138 src/voice.js:234 src/voice.js:300
+#: src/voice.js:433 src/voice.js:436 src/voice.js:504 src/voice.js:515
+#: src/voice.js:733 src/voice.js:847 src/voice.js:905 src/voice.js:921
+#: src/voice.js:923 src/voice.js:956 src/voice.js:1175 src/voice.js:1394
+#: src/voice.js:1403 src/voice.js:1616 src/voice.js:1664 src/voice.js:1789
+msgid "now"
+msgstr "刚刚"
+
+#: ../scripts/setup-voice.sh:78
+msgid "please install curl first."
+msgstr "请先安装 curl。"
+
+#: ../scripts/setup-voice.sh:79
+msgid "please install sha256sum (coreutils) first."
+msgstr "请先安装 sha256sum（coreutils）。"
+
+#: src/pages/usage.js:350
+#, python-format
+msgid "resets in %sd"
+msgstr "%s 天后重置"
+
+#: src/pages/usage.js:350
+#, python-format
+msgid "resets in %sd %sh"
+msgstr "%s 天 %s 小时后重置"
+
+#: src/pages/usage.js:352
+#, python-format
+msgid "resets in %sh"
+msgstr "%s 小时后重置"
+
+#: src/pages/usage.js:352
+#, python-format
+msgid "resets in %sh %sm"
+msgstr "%s 小时 %s 分钟后重置"
+
+#: src/pages/usage.js:353
+#, python-format
+msgid "resets in %sm"
+msgstr "%s 分钟后重置"
+
+#: src/pages/usage.js:346
+msgid "resets soon"
+msgstr "即将重置"
+
+#: prefs.js:1882
+msgid "the installer stopped"
+msgstr "安装程序已停止"
+
+#: prefs.js:1358
+msgid "the models of the providers you signed in to in Pi"
+msgstr "你在 Pi 中登录的服务提供商所提供的模型"
+
+#: src/alerts.js:375 src/voice.js:60
+msgid "today"
+msgstr "今天"
+
+#: ../scripts/setup-voice.sh:55
+#, python-format
+msgid "unknown argument '%s' (a model is tiny, base, small or medium)"
+msgstr "未知参数「%s」。模型可选 tiny、base、small 或 medium。"
+
+#: src/pages/calendar.js:1023
+#, python-format
+msgid "until %s"
+msgstr "至 %s"
+
+#: prefs.js:1698
+#, python-format
+msgid "used by %s"
+msgstr "已由 %s 使用"
+
+#: prefs.js:1360
+msgid "what Antigravity answers with"
+msgstr "Antigravity 使用的模型"
+
+#: prefs.js:1350
+msgid "what ChatGPT answers with, quickly"
+msgstr "ChatGPT 使用的快速模型"
+
+#: prefs.js:1348
+msgid "what Claude answers with"
+msgstr "Claude 使用的模型"
+
+#: prefs.js:1352
+msgid "what Grok answers with, quickly"
+msgstr "Grok 使用的快速模型"
+
+#: prefs.js:1355
+msgid ""
+"your recent opencode models, your providers’, the free ones and your "
+"plan’s"
+msgstr "opencode 最近使用的模型，以及服务提供商、免费和套餐可用的模型"
+
+#: prefs.js:1708
+#, python-format
+msgid "your shortcut “%s”"
+msgstr "你的快捷键「%s」"
+
+#: src/pages/phone.js:308
+#, python-format
+msgid "✓ %s disconnected"
+msgstr "✓ %s 已断开连接"

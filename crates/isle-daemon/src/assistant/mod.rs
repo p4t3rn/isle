@@ -2048,11 +2048,30 @@ pub async fn prepare_report() {
 }
 
 /// What `isled --doctor` says about the assistant: speech recognition, and each AI and its sign-in.
-pub fn report() -> String {
-    let mut lines = vec![whisper::report()];
+pub fn report(locale: crate::locale::Locale) -> String {
+    let mut lines = vec![whisper::report(locale)];
     for provider in Provider::all() {
         let name = provider.name();
-        lines.push(match provider.program() {
+        let program = provider.program();
+        if locale.is_chinese() {
+            let state = match program.as_ref() {
+                None => "未安装".to_owned(),
+                Some(path) if provider.signed_in() => format!("{}（已登录）", path.display()),
+                Some(path) if provider == Provider::Opencode => format!(
+                    "{}（可用免费模型，运行 `{}` 即可登录自己的服务提供商）",
+                    path.display(),
+                    provider.sign_in_command()
+                ),
+                Some(path) => format!(
+                    "{}（尚未登录，请运行 `{}`）",
+                    path.display(),
+                    provider.sign_in_command()
+                ),
+            };
+            lines.push(format!("  {name}：{state}"));
+            continue;
+        }
+        lines.push(match program {
             None => format!("  {name}: not installed"),
             Some(path) if provider.signed_in() => {
                 format!("  {name}: {} (signed in)", path.display())
