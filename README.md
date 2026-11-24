@@ -1,25 +1,47 @@
 <div align="center">
 
-# Isle
+# Isle · GNOME 灵动岛
 
-**A notch-style island for the GNOME desktop.**
+**适用于 Ubuntu 等 Linux 系统的 GNOME 桌面扩展。**
 
-Music with synced lyrics, calls, notifications, a focus timer, reminders, a
-calendar that tells you when to join a meeting, a clipboard shelf, app usage,
-Claude Code and Codex asking you right there, and an assistant that installs and
-fixes things with the AI you already use, living in a notch at the top of
-your screen.
+Isle 在 GNOME 顶栏中央显示当前播放、来电、计时和系统提醒。鼠标停留时可展开面板，查看音乐和同步歌词、通知、日历、专注计时、待办、剪贴板、文件托盘和应用使用时长，也可以调用 Codex 等语音助手。
 
-[![License: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg)](LICENSE)
+**[查看简体中文测试版](https://github.com/p4t3rn/isle/tree/zh-cn-test)**
+
+[![许可证 GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg)](LICENSE)
 ![GNOME Shell 46–51](https://img.shields.io/badge/GNOME%20Shell-46%E2%80%9351-4a86cf.svg)
 ![Rust 1.92+](https://img.shields.io/badge/Rust-1.92%2B-orange.svg)
-[![Buy me a coffee](https://img.shields.io/badge/support-buy%20me%20a%20coffee-ffdd00.svg)](https://sociabuzz.com/zickrian/tribe)
 
-<img src="docs/images/demo.webp" alt="Isle on a GNOME desktop: the assistant playing music when asked, a command waiting for Run, every page of the island one hover away, and Claude Code asking for permission" width="800">
-
-[![Watch the full demo on YouTube](https://img.shields.io/badge/Watch%20the%20full%20demo-2%20min%2C%20with%20sound-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/D65nLECDgOo)
+<img src="docs/images/demo.webp" alt="Isle 在 GNOME 桌面上展示音乐、语音助手和命令确认" width="800">
 
 </div>
+
+## 中文测试版
+
+`zh-cn-test` 基于上游 Isle 1.7.3，已在 Ubuntu 26.04.1 和 GNOME 50.1 Wayland 上测试。
+
+- **简体中文**覆盖扩展设置、音乐、通知、日历、专注计时、文件托盘和语音助手等常用界面，以及安装和语音设置脚本的大部分提示。使用简体中文系统语言时会自动加载译文。
+- **音乐适配**通过 Linux 的 MPRIS 媒体会话读取曲名、歌手、专辑和封面，按播放器公开的能力提供暂停、切歌和进度控制。适配 QQ 音乐的 Chromium 媒体标识，也能接入公开 MPRIS 的网易云音乐客户端和 Electron 应用。
+- **Web App 和网页**也可通过 MPRIS 接入。独立运行且有可识别桌面启动器的 Web App 可显示自己的名称和图标。共用浏览器进程时，Isle 显示浏览器当前公开的媒体会话。
+
+已用 Electron 应用、Chrome 独立 Web App 和普通标签页实测中文曲目信息、暂停和续播。QQ 音乐与网易云音乐的兼容路径使用模拟媒体会话做了回归测试。
+
+## 从源码安装中文测试版
+
+需要 GNOME Shell、Git、编译工具和 Rust。建议用 [rustup](https://rustup.rs/) 安装 Rust 1.92 或更新版本。Ubuntu 可先装基础编译依赖。
+
+```bash
+sudo apt install git build-essential pkg-config gettext
+git clone --branch zh-cn-test --single-branch https://github.com/p4t3rn/isle.git isle-cn
+cd isle-cn
+./install.sh
+```
+
+请用普通用户运行安装脚本，安装后注销并重新登录 GNOME。更新时，在同一个目录运行 `git pull --ff-only`，再运行 `./install.sh`。文件拖放和语音识别的可选编译依赖见下方英文手册。
+
+Isle 由 [zickrian](https://github.com/zickrian/isle) 开发。本仓库用于简体中文适配和本地测试，沿用 [GPL-3.0-or-later 许可证](LICENSE)。[查看上游演示视频](https://youtu.be/D65nLECDgOo)
+
+## 上游使用手册（英文）
 
 Isle turns the centre of the top bar into a black notch.
 At rest it shows the time and what is going on (a song, a timer, a
