@@ -2,7 +2,9 @@
 
 # Isle · GNOME 灵动岛
 
-**适用于 Ubuntu 等 Linux 系统的 GNOME 桌面扩展。**
+**基于原版 Isle 的简体中文适配。**
+
+本仓库派生自 zickrian 开发的 Isle，面向 Ubuntu 等 Linux 系统的 GNOME 桌面，维护简体中文界面和相关媒体兼容改动。[上游项目 zickrian/isle](https://github.com/zickrian/isle)
 
 Isle 在 GNOME 顶栏中央显示当前播放、来电、计时和系统提醒。鼠标停留时可展开面板，查看音乐和同步歌词、通知、日历、专注计时、待办、剪贴板、文件托盘和应用使用时长，也可以调用 Codex 等语音助手。
 
@@ -39,7 +41,7 @@ cd isle-cn
 
 请用普通用户运行安装脚本，安装后注销并重新登录 GNOME。更新时，在同一个目录运行 `git pull --ff-only`，再运行 `./install.sh`。文件拖放和语音识别的可选编译依赖见下方英文手册。
 
-Isle 由 [zickrian](https://github.com/zickrian/isle) 开发。本仓库用于简体中文适配和本地测试，沿用 [GPL-3.0-or-later 许可证](LICENSE)。[查看上游演示视频](https://youtu.be/D65nLECDgOo)
+中文适配版沿用上游的 GPL-3.0-or-later 许可证。[许可证](LICENSE) · [上游演示视频](https://youtu.be/D65nLECDgOo)
 
 ## 上游使用手册（英文）
 
